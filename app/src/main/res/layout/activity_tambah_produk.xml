@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity.TambahProdukActivity"
+    android:orientation="vertical">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?actionBarSize"
+        android:background="@color/primaryColor">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="24dp"
+                android:layout_gravity="center"
+                android:textColor="@color/colorWhite"
+                android:textSize="20dp"
+                android:text="Tambah Produk"/>
+
+        </FrameLayout>
+
+    </androidx.appcompat.widget.Toolbar>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="@color/box_stroke"/>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="20dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Jenis Produk"
+                    android:textSize="19dp"
+                    android:textColor="@color/colorBlack"/>
+
+                <Spinner
+                    android:layout_marginTop="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/spinner"/>
+
+            </LinearLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp">
+
+                <EditText
+                    android:id="@+id/judulEt"
+                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:hint="Judul Produk"
+                    android:inputType="text"
+                    android:maxLines="1"
+                    android:textColor="@color/primaryTextColor" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp">
+
+                <EditText
+                    android:id="@+id/deskripsiEt"
+                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:hint="Deskripsi Produk"
+                    android:inputType="text"
+                    android:textColor="@color/primaryTextColor" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp">
+
+                <EditText
+                    android:id="@+id/hargaEt"
+                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:hint="Harga Satuan (Rp.)"
+                    android:inputType="number"
+                    android:textColor="@color/primaryTextColor" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp">
+
+                <EditText
+                    android:id="@+id/stokEt"
+                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:hint="Stok Produk"
+                    android:inputType="number"
+                    android:textColor="@color/primaryTextColor" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <ImageView
+                android:layout_marginTop="20dp"
+                android:id="@+id/fotoProdukIv"
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_image_black" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/pilihFotoBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Pilih Foto"
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="30dp"/>
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:text="SIMPAN"
+                android:id="@+id/simpanBtn"/>
+
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+</LinearLayout>

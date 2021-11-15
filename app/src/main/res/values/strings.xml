@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Omah Jamur</string>
+    <string name="base_url">http://192.168.1.10/</string>
+    <string name="profile_link">omah_jamur/assets/profile/</string>
+    <string name="produk_link">omah_jamur/assets/produk/</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>

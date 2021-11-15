@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity.PilihanDaftarActivity"
+    android:orientation="vertical"
+    android:padding="30dp">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Anda belum memiliki akun. Silakan pilih peran pengguna dan klik tombol Daftar."
+        android:textStyle="bold"
+        android:textColor="@color/colorBlack"
+        android:textSize="25dp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="40dp">
+
+        <TextView
+            android:id="@+id/textViewPertanyaan"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Peran pengguna"
+            android:textColor="@color/colorBlack"
+            android:textSize="20dp"
+            android:lineSpacingExtra="3sp"/>
+
+        <ImageView
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
+            android:layout_gravity="center"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:src="@drawable/gambar"/>
+
+        <RadioGroup
+            android:id="@+id/radioGroup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:layout_weight="1"
+                android:id="@+id/radioButtonCustomer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorBlack"
+                android:layout_gravity="center"
+                android:text="Customer"
+                android:layout_marginRight="20dp"
+                android:checked="true"/>
+
+            <RadioButton
+                android:layout_weight="1"
+                android:id="@+id/radioButtonPetani"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:textColor="@color/colorBlack"
+                android:text="Petani"/>
+
+        </RadioGroup>
+
+    </LinearLayout>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/pilihDaftarBtn"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="10dp"
+        android:textSize="15dp"
+        android:backgroundTint="@color/primaryColor"
+        app:cornerRadius="11dp"
+        style="@style/Widget.MaterialComponents.Button.UnelevatedButton"
+        android:text="Daftar" />
+
+</LinearLayout>

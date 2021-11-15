@@ -1,0 +1,278 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    android:background="@color/background"
+    android:orientation="vertical">
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_marginTop="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="30dp"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_weight="1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Selamat Datang,"
+                        android:textSize="30dp"
+                        android:textStyle="bold"/>
+
+                    <TextView
+                        android:id="@+id/namaUserTv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Nama"
+                        android:textSize="20dp"
+                        android:textStyle="bold"/>
+
+                </LinearLayout>
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:src="@drawable/gambar"
+                    android:id="@+id/fotoUserIv"/>
+
+            </LinearLayout>
+
+            <androidx.core.widget.NestedScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <GridLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="30dp"
+                    android:columnCount="2">
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_marginTop="20dp"
+                        android:id="@+id/aCv"
+                        android:layout_weight="1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:elevation="10dp"
+                        app:contentPadding="20dp"
+                        app:cardCornerRadius="10dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                            <ImageView
+                                android:id="@+id/aIv"
+                                android:layout_width="120dp"
+                                android:layout_height="120dp"
+                                android:src="@drawable/gambar"/>
+
+                            <TextView
+                                android:id="@+id/aTv"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="Pengaturan"
+                                android:textSize="20dp"
+                                android:textColor="@color/colorBlack"/>
+
+                        </LinearLayout>
+
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_marginTop="20dp"
+                        android:id="@+id/bCv"
+                        android:layout_weight="1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:elevation="10dp"
+                        app:contentPadding="20dp"
+                        android:layout_marginLeft="20dp"
+                        app:cardCornerRadius="10dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                            <ImageView
+                                android:id="@+id/bIv"
+                                android:layout_width="120dp"
+                                android:layout_height="120dp"
+                                android:src="@drawable/gambar"/>
+
+                            <TextView
+                                android:id="@+id/bTv"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="Pengaturan"
+                                android:textSize="20dp"
+                                android:textColor="@color/colorBlack"/>
+
+                        </LinearLayout>
+
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/cCv"
+                        android:layout_marginTop="20dp"
+                        android:layout_weight="1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:elevation="10dp"
+                        app:contentPadding="20dp"
+                        app:cardCornerRadius="10dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                            <ImageView
+                                android:id="@+id/cIv"
+                                android:layout_width="120dp"
+                                android:layout_height="120dp"
+                                android:src="@drawable/gambar"/>
+
+                            <TextView
+                                android:id="@+id/cTv"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="Pengaturan"
+                                android:textSize="20dp"
+                                android:textColor="@color/colorBlack"/>
+
+                        </LinearLayout>
+
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/dCv"
+                        android:layout_marginTop="20dp"
+                        android:layout_weight="1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:elevation="10dp"
+                        app:contentPadding="20dp"
+                        android:layout_marginLeft="20dp"
+                        app:cardCornerRadius="10dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                            <ImageView
+                                android:id="@+id/dIv"
+                                android:layout_width="120dp"
+                                android:layout_height="120dp"
+                                android:src="@drawable/gambar"/>
+
+                            <TextView
+                                android:id="@+id/dTv"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="Pengaturan"
+                                android:textSize="20dp"
+                                android:textColor="@color/colorBlack"/>
+
+                        </LinearLayout>
+
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/eCv"
+                        android:layout_marginTop="20dp"
+                        android:layout_weight="1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:elevation="10dp"
+                        app:contentPadding="20dp"
+                        app:cardCornerRadius="10dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                            <ImageView
+                                android:id="@+id/eIv"
+                                android:layout_width="120dp"
+                                android:layout_height="120dp"
+                                android:src="@drawable/gambar"/>
+
+                            <TextView
+                                android:id="@+id/eTv"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="Pengaturan"
+                                android:textSize="20dp"
+                                android:textColor="@color/colorBlack"/>
+
+                        </LinearLayout>
+
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/fCv"
+                        android:layout_weight="1"
+                        android:layout_marginTop="20dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:elevation="10dp"
+                        app:contentPadding="20dp"
+                        android:layout_marginLeft="20dp"
+                        app:cardCornerRadius="10dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                            <ImageView
+                                android:id="@+id/fIv"
+                                android:layout_width="120dp"
+                                android:layout_height="120dp"
+                                android:src="@drawable/gambar"/>
+
+                            <TextView
+                                android:id="@+id/fTv"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="Pengaturan"
+                                android:textSize="20dp"
+                                android:textColor="@color/colorBlack"/>
+
+                        </LinearLayout>
+
+                    </androidx.cardview.widget.CardView>
+
+                </GridLayout>
+
+            </androidx.core.widget.NestedScrollView>
+
+
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+</LinearLayout>

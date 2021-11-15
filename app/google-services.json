@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "452097718740",
+    "project_id": "omah-jamur",
+    "storage_bucket": "omah-jamur.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:452097718740:android:228140947bdd0f5e653e41",
+        "android_client_info": {
+          "package_name": "com.riskyd.omahjamur"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "452097718740-c16dftp3ttk6kituan6k4s6i3l3s68oq.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.riskyd.omahjamur",
+            "certificate_hash": "44bc660508a75fc56c9cdd473a702c6ae03975b7"
+          }
+        },
+        {
+          "client_id": "452097718740-ub0iidjvqljpro5dkcq5dlmhlai5j3d8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBe2L-tbJokbTm-rfUPd9SChvQRUhtNEzg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "452097718740-ub0iidjvqljpro5dkcq5dlmhlai5j3d8.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
