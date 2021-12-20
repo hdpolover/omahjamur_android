@@ -37,13 +37,29 @@
                         android:textSize="30dp"
                         android:textStyle="bold"/>
 
-                    <TextView
-                        android:id="@+id/namaUserTv"
-                        android:layout_width="wrap_content"
+                    <LinearLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Nama"
-                        android:textSize="20dp"
-                        android:textStyle="bold"/>
+                        android:orientation="horizontal">
+
+                        <com.google.android.material.chip.Chip
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Peran"
+                            android:layout_marginRight="10dp"
+                            app:chipBackgroundColor="@color/design_default_color_secondary"
+                            android:id="@+id/peranPenggunaChip"/>
+
+                        <TextView
+                            android:id="@+id/namaUserTv"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Nama"
+                            android:textSize="20dp"
+                            android:textStyle="bold"/>
+
+                    </LinearLayout>
+
 
                 </LinearLayout>
 
@@ -53,220 +69,278 @@
                     android:src="@drawable/gambar"
                     android:id="@+id/fotoUserIv"/>
 
+
             </LinearLayout>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/warningCv"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="11dp"
+                app:contentPadding="15dp"
+                android:backgroundTint="@color/warning">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Pengajuan anda masih belum divalidasi. Silakan tunggu validasi dari admin sebelum mulai mengatur toko dan produk anda."/>
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
 
             <androidx.core.widget.NestedScrollView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-                <GridLayout
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:padding="30dp"
-                    android:columnCount="2">
+                    android:orientation="vertical">
 
-                    <androidx.cardview.widget.CardView
-                        android:layout_marginTop="20dp"
-                        android:id="@+id/aCv"
-                        android:layout_weight="1"
-                        android:layout_width="wrap_content"
+                    <GridLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:elevation="10dp"
-                        app:contentPadding="20dp"
-                        app:cardCornerRadius="10dp">
+                        android:paddingRight="30dp"
+                        android:paddingLeft="30dp"
+                        android:paddingTop="10dp"
+                        android:paddingBottom="20dp"
+                        android:columnCount="2">
 
-                        <LinearLayout
-                            android:layout_width="match_parent"
+                        <androidx.cardview.widget.CardView
+                            android:layout_marginTop="20dp"
+                            android:id="@+id/aCv"
+                            android:layout_weight="1"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:orientation="vertical">
+                            android:elevation="10dp"
+                            app:contentPadding="20dp"
+                            app:cardCornerRadius="10dp">
 
-                            <ImageView
-                                android:id="@+id/aIv"
-                                android:layout_width="120dp"
-                                android:layout_height="120dp"
-                                android:src="@drawable/gambar"/>
-
-                            <TextView
-                                android:id="@+id/aTv"
+                            <LinearLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:text="Pengaturan"
-                                android:textSize="20dp"
-                                android:textColor="@color/colorBlack"/>
+                                android:orientation="vertical">
 
-                        </LinearLayout>
+                                <ImageView
+                                    android:id="@+id/aIv"
+                                    android:layout_width="120dp"
+                                    android:layout_height="120dp"
+                                    android:src="@drawable/gambar"/>
 
-                    </androidx.cardview.widget.CardView>
+                                <TextView
+                                    android:id="@+id/aTv"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="Pengaturan"
+                                    android:textSize="20dp"
+                                    android:textColor="@color/colorBlack"/>
 
-                    <androidx.cardview.widget.CardView
-                        android:layout_marginTop="20dp"
-                        android:id="@+id/bCv"
-                        android:layout_weight="1"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:elevation="10dp"
-                        app:contentPadding="20dp"
-                        android:layout_marginLeft="20dp"
-                        app:cardCornerRadius="10dp">
+                            </LinearLayout>
 
-                        <LinearLayout
-                            android:layout_width="match_parent"
+                        </androidx.cardview.widget.CardView>
+
+                        <androidx.cardview.widget.CardView
+                            android:layout_marginTop="20dp"
+                            android:id="@+id/bCv"
+                            android:layout_weight="1"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:orientation="vertical">
+                            android:elevation="10dp"
+                            app:contentPadding="20dp"
+                            android:layout_marginLeft="20dp"
+                            app:cardCornerRadius="10dp">
 
-                            <ImageView
-                                android:id="@+id/bIv"
-                                android:layout_width="120dp"
-                                android:layout_height="120dp"
-                                android:src="@drawable/gambar"/>
-
-                            <TextView
-                                android:id="@+id/bTv"
+                            <LinearLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:text="Pengaturan"
-                                android:textSize="20dp"
-                                android:textColor="@color/colorBlack"/>
+                                android:orientation="vertical">
 
-                        </LinearLayout>
+                                <ImageView
+                                    android:id="@+id/bIv"
+                                    android:layout_width="120dp"
+                                    android:layout_height="120dp"
+                                    android:src="@drawable/gambar"/>
 
-                    </androidx.cardview.widget.CardView>
+                                <TextView
+                                    android:id="@+id/bTv"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="Pengaturan"
+                                    android:textSize="20dp"
+                                    android:textColor="@color/colorBlack"/>
 
-                    <androidx.cardview.widget.CardView
-                        android:id="@+id/cCv"
-                        android:layout_marginTop="20dp"
-                        android:layout_weight="1"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:elevation="10dp"
-                        app:contentPadding="20dp"
-                        app:cardCornerRadius="10dp">
+                            </LinearLayout>
 
-                        <LinearLayout
-                            android:layout_width="match_parent"
+                        </androidx.cardview.widget.CardView>
+
+                        <androidx.cardview.widget.CardView
+                            android:id="@+id/cCv"
+                            android:layout_marginTop="20dp"
+                            android:layout_weight="1"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:orientation="vertical">
+                            android:elevation="10dp"
+                            app:contentPadding="20dp"
+                            app:cardCornerRadius="10dp">
 
-                            <ImageView
-                                android:id="@+id/cIv"
-                                android:layout_width="120dp"
-                                android:layout_height="120dp"
-                                android:src="@drawable/gambar"/>
-
-                            <TextView
-                                android:id="@+id/cTv"
+                            <LinearLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:text="Pengaturan"
-                                android:textSize="20dp"
-                                android:textColor="@color/colorBlack"/>
+                                android:orientation="vertical">
 
-                        </LinearLayout>
+                                <ImageView
+                                    android:id="@+id/cIv"
+                                    android:layout_width="120dp"
+                                    android:layout_height="120dp"
+                                    android:src="@drawable/gambar"/>
 
-                    </androidx.cardview.widget.CardView>
+                                <TextView
+                                    android:id="@+id/cTv"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="Pengaturan"
+                                    android:textSize="20dp"
+                                    android:textColor="@color/colorBlack"/>
 
-                    <androidx.cardview.widget.CardView
-                        android:id="@+id/dCv"
-                        android:layout_marginTop="20dp"
-                        android:layout_weight="1"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:elevation="10dp"
-                        app:contentPadding="20dp"
-                        android:layout_marginLeft="20dp"
-                        app:cardCornerRadius="10dp">
+                            </LinearLayout>
 
-                        <LinearLayout
-                            android:layout_width="match_parent"
+                        </androidx.cardview.widget.CardView>
+
+                        <androidx.cardview.widget.CardView
+                            android:id="@+id/dCv"
+                            android:layout_marginTop="20dp"
+                            android:layout_weight="1"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:orientation="vertical">
+                            android:elevation="10dp"
+                            app:contentPadding="20dp"
+                            android:layout_marginLeft="20dp"
+                            app:cardCornerRadius="10dp">
 
-                            <ImageView
-                                android:id="@+id/dIv"
-                                android:layout_width="120dp"
-                                android:layout_height="120dp"
-                                android:src="@drawable/gambar"/>
-
-                            <TextView
-                                android:id="@+id/dTv"
+                            <LinearLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:text="Pengaturan"
-                                android:textSize="20dp"
-                                android:textColor="@color/colorBlack"/>
+                                android:orientation="vertical">
 
-                        </LinearLayout>
+                                <ImageView
+                                    android:id="@+id/dIv"
+                                    android:layout_width="120dp"
+                                    android:layout_height="120dp"
+                                    android:src="@drawable/gambar"/>
 
-                    </androidx.cardview.widget.CardView>
+                                <TextView
+                                    android:id="@+id/dTv"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="Pengaturan"
+                                    android:textSize="20dp"
+                                    android:textColor="@color/colorBlack"/>
 
-                    <androidx.cardview.widget.CardView
-                        android:id="@+id/eCv"
-                        android:layout_marginTop="20dp"
-                        android:layout_weight="1"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:elevation="10dp"
-                        app:contentPadding="20dp"
-                        app:cardCornerRadius="10dp">
+                            </LinearLayout>
 
-                        <LinearLayout
-                            android:layout_width="match_parent"
+                        </androidx.cardview.widget.CardView>
+
+                        <androidx.cardview.widget.CardView
+                            android:id="@+id/eCv"
+                            android:layout_marginTop="20dp"
+                            android:layout_weight="1"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:orientation="vertical">
+                            android:elevation="10dp"
+                            app:contentPadding="20dp"
+                            app:cardCornerRadius="10dp">
 
-                            <ImageView
-                                android:id="@+id/eIv"
-                                android:layout_width="120dp"
-                                android:layout_height="120dp"
-                                android:src="@drawable/gambar"/>
-
-                            <TextView
-                                android:id="@+id/eTv"
+                            <LinearLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:text="Pengaturan"
-                                android:textSize="20dp"
-                                android:textColor="@color/colorBlack"/>
+                                android:orientation="vertical">
 
-                        </LinearLayout>
+                                <ImageView
+                                    android:id="@+id/eIv"
+                                    android:layout_width="120dp"
+                                    android:layout_height="120dp"
+                                    android:src="@drawable/gambar"/>
 
-                    </androidx.cardview.widget.CardView>
+                                <TextView
+                                    android:id="@+id/eTv"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="Pengaturan"
+                                    android:textSize="20dp"
+                                    android:textColor="@color/colorBlack"/>
 
-                    <androidx.cardview.widget.CardView
-                        android:id="@+id/fCv"
-                        android:layout_weight="1"
-                        android:layout_marginTop="20dp"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:elevation="10dp"
-                        app:contentPadding="20dp"
-                        android:layout_marginLeft="20dp"
-                        app:cardCornerRadius="10dp">
+                            </LinearLayout>
 
-                        <LinearLayout
-                            android:layout_width="match_parent"
+                        </androidx.cardview.widget.CardView>
+
+                        <androidx.cardview.widget.CardView
+                            android:id="@+id/fCv"
+                            android:layout_weight="1"
+                            android:layout_marginTop="20dp"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:orientation="vertical">
+                            android:elevation="10dp"
+                            app:contentPadding="20dp"
+                            android:layout_marginLeft="20dp"
+                            app:cardCornerRadius="10dp">
 
-                            <ImageView
-                                android:id="@+id/fIv"
-                                android:layout_width="120dp"
-                                android:layout_height="120dp"
-                                android:src="@drawable/gambar"/>
-
-                            <TextView
-                                android:id="@+id/fTv"
+                            <LinearLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:text="Pengaturan"
-                                android:textSize="20dp"
-                                android:textColor="@color/colorBlack"/>
+                                android:orientation="vertical">
 
-                        </LinearLayout>
+                                <ImageView
+                                    android:id="@+id/fIv"
+                                    android:layout_width="120dp"
+                                    android:layout_height="120dp"
+                                    android:src="@drawable/gambar"/>
 
-                    </androidx.cardview.widget.CardView>
+                                <TextView
+                                    android:id="@+id/fTv"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="Pengaturan"
+                                    android:textSize="20dp"
+                                    android:textColor="@color/colorBlack"/>
 
-                </GridLayout>
+                            </LinearLayout>
+
+                        </androidx.cardview.widget.CardView>
+
+                    </GridLayout>
+
+                    <TextView
+                        android:layout_marginTop="40dp"
+                        android:gravity="center"
+                        android:layout_gravity="center"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Omah Jamur"
+                        android:textColor="@color/colorBlack"
+                        android:textSize="17dp"/>
+
+                    <TextView
+                        android:id="@+id/textViewVersion"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Ver 1.00"
+                        android:textColor="@color/colorGray"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginBottom="30dp"/>
+
+                </LinearLayout>
+
+
 
             </androidx.core.widget.NestedScrollView>
 

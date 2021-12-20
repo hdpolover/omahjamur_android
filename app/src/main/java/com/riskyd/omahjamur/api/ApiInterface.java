@@ -2,6 +2,7 @@ package com.riskyd.omahjamur.api;
 
 import com.riskyd.omahjamur.api.response.AdminResponse;
 import com.riskyd.omahjamur.api.response.BaseResponse;
+import com.riskyd.omahjamur.api.response.CustomerResponse;
 import com.riskyd.omahjamur.api.response.DetailJenisProdukResponse;
 import com.riskyd.omahjamur.api.response.JenisProdukResponse;
 import com.riskyd.omahjamur.api.response.PenggunaResponse;
@@ -72,6 +73,16 @@ public interface ApiInterface {
             @Field("password") String password
     );
 
+    //customer
+    @Multipart
+    @POST("customer/daftar_customer")
+    Call<BaseResponse> daftarCustomer(
+            @Part("id_pengguna") RequestBody idPengguna,
+            @Part("nama") RequestBody nama,
+            @Part("alamat") RequestBody alamat,
+            @Part MultipartBody.Part image
+            );
+
     //petani
     @Multipart
     @POST("petani/daftar_petani")
@@ -82,7 +93,7 @@ public interface ApiInterface {
             @Part("latitude") RequestBody latitude,
             @Part("longitude") RequestBody longitude,
             @Part MultipartBody.Part image
-            );
+    );
 
     @GET("petani")
     Call<PetaniResponse> get_petani();
@@ -92,9 +103,30 @@ public interface ApiInterface {
             @Query("id_pengguna") String idPengguna
     );
 
+    @GET("customer/get_detail")
+    Call<CustomerResponse> getDetailCustomer(
+            @Query("id_pengguna") String idPengguna
+    );
+
+    @GET("petani/get_detail_id")
+    Call<PetaniResponse> getDetailPetaniId(
+            @Query("id_petani") String idPetani
+    );
+
+    @FormUrlEncoded
+    @POST("petani/validasi")
+    Call<BaseResponse> validasiPetani(
+            @Field("id_petani") String idPetani
+    );
+
     @GET("admin/get_detail")
     Call<AdminResponse> getDetailAdmin(
             @Query("id_pengguna") String idPengguna
+    );
+
+    @GET("produk/get_detail_produk")
+    Call<ProdukResponse> getDetailProduk(
+            @Query("id_produk") String idProduk
     );
 
     @GET("produk/get_produk_petani")
@@ -110,6 +142,9 @@ public interface ApiInterface {
 
     @GET("detail_jenis_produk")
     Call<DetailJenisProdukResponse> getDjp();
+
+    @GET("produk")
+    Call<ProdukResponse> getKatalogProduk();
 
     @Multipart
     @POST("produk/tambah")

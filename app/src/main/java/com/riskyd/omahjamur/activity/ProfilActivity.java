@@ -15,6 +15,7 @@ import com.riskyd.omahjamur.R;
 import com.riskyd.omahjamur.api.ApiClient;
 import com.riskyd.omahjamur.api.ApiInterface;
 import com.riskyd.omahjamur.api.response.AdminResponse;
+import com.riskyd.omahjamur.api.response.CustomerResponse;
 import com.riskyd.omahjamur.api.response.PenggunaResponse;
 import com.riskyd.omahjamur.api.response.PetaniResponse;
 import com.riskyd.omahjamur.databinding.ActivityDaftarPetaniBinding;
@@ -110,6 +111,29 @@ public class ProfilActivity extends AppCompatActivity {
 
                 @Override
                 public void onFailure(Call<PetaniResponse> call, Throwable t) {
+                    Toast.makeText(ProfilActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+                }
+            });
+        } else {
+            apiInterface.getDetailCustomer(u.idPengguna).enqueue(new Callback<CustomerResponse>() {
+                @Override
+                public void onResponse(Call<CustomerResponse> call, Response<CustomerResponse> response) {
+                    if (response.body().status) {
+                        CustomerResponse.CustomerModel pm = response.body().data.get(0);
+                        Glide.with(getApplicationContext())
+                                .load(getString(R.string.base_url) + getString(R.string.profile_link) + pm.getFoto())
+                                .centerCrop()
+                                .placeholder(R.drawable.gambar)
+                                .into(binding.fotoProfilIv);
+
+                        binding.namaPenggunaTv.setText(pm.getNama());
+
+                        binding.peranTv.setText("Customer");
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<CustomerResponse> call, Throwable t) {
                     Toast.makeText(ProfilActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
                 }
             });

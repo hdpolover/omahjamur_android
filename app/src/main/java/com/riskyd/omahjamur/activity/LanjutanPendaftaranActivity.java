@@ -4,13 +4,11 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Environment;
-import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
@@ -21,13 +19,10 @@ import com.riskyd.omahjamur.api.ApiClient;
 import com.riskyd.omahjamur.api.ApiInterface;
 import com.riskyd.omahjamur.api.response.BaseResponse;
 import com.riskyd.omahjamur.api.response.PenggunaResponse;
-import com.riskyd.omahjamur.databinding.ActivityDaftarPetaniBinding;
-import com.riskyd.omahjamur.databinding.ActivityPendaftaranPetaniBinding;
+import com.riskyd.omahjamur.databinding.ActivityLanjutanPendaftaranBinding;
+import com.riskyd.omahjamur.preference.AppPreference;
 
-import java.io.ByteArrayOutputStream;
 import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
 
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
@@ -36,8 +31,8 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class PendaftaranPetaniActivity extends AppCompatActivity {
-    ActivityPendaftaranPetaniBinding binding;
+public class LanjutanPendaftaranActivity extends AppCompatActivity {
+    ActivityLanjutanPendaftaranBinding binding;
     private Uri imgUser;
     String email;
     String id_role;
@@ -47,10 +42,12 @@ public class PendaftaranPetaniActivity extends AppCompatActivity {
     ApiInterface apiInterface;
     Context context;
 
+    ProgressDialog progressDialog;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = ActivityPendaftaranPetaniBinding.inflate(getLayoutInflater());
+        binding = ActivityLanjutanPendaftaranBinding.inflate(getLayoutInflater());
         View view = binding.getRoot();
         setContentView(view);
 
@@ -62,7 +59,7 @@ public class PendaftaranPetaniActivity extends AppCompatActivity {
         binding.pilihFotoBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ImagePicker.Companion.with(PendaftaranPetaniActivity.this)
+                ImagePicker.Companion.with(LanjutanPendaftaranActivity.this)
                         .compress(3000)
                         .galleryOnly()
                         .start();
@@ -93,7 +90,7 @@ public class PendaftaranPetaniActivity extends AppCompatActivity {
         }
 
         if (imgUser == null) {
-            Toast.makeText(PendaftaranPetaniActivity.this, "Foto profil harus dipilih.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(LanjutanPendaftaranActivity.this, "Foto profil harus dipilih.", Toast.LENGTH_SHORT).show();
             cekImg = false;
         }
 
@@ -123,13 +120,13 @@ public class PendaftaranPetaniActivity extends AppCompatActivity {
                                             Log.e("id", id + ", " + id_role);
 
                                             //save
-                                            //AppPreference.saveUser(DaftarPetaniActivity.this, response.body().data.get(0));
+                                            AppPreference.saveUser(LanjutanPendaftaranActivity.this, response.body().data.get(0));
 
                                             //lanjut insert tabel lain
                                             if (id_role.equals("2")) {
                                                 daftarkanPetani(id, nama, alamat, "0", "0");
-                                            } else {
-                                                Toast.makeText(PendaftaranPetaniActivity.this, id, Toast.LENGTH_SHORT).show();
+                                            } else if (id_role.equals("3")) {
+                                                daftarkanCust(id, nama, alamat);
                                             }
                                         }
                                     }
@@ -152,7 +149,60 @@ public class PendaftaranPetaniActivity extends AppCompatActivity {
         }
     }
 
+    private void daftarkanCust(String id, String uNama, String uAlamat) {
+        progressDialog = new ProgressDialog(LanjutanPendaftaranActivity.this);
+        progressDialog.setCancelable(false);
+        progressDialog.setTitle("Pesan");
+        progressDialog.setMessage("Mohon tunggu sebentar...");
+        progressDialog.show();
+
+        RequestBody idPengguna = RequestBody.create(MediaType.parse("text/plain"), id);
+        RequestBody nama = RequestBody.create(MediaType.parse("text/plain"), uNama);
+        RequestBody alamat = RequestBody.create(MediaType.parse("text/plain"), uAlamat);
+
+        //image
+        File file = new File(imgUser.getPath());
+        RequestBody reqFile =  RequestBody.create(MediaType.parse("image/*"), file);
+        MultipartBody.Part f =  MultipartBody.Part.createFormData("image", file.getName(), reqFile);
+
+        apiInterface.daftarCustomer(
+                idPengguna,
+                nama,
+                alamat,
+                f
+        ).enqueue(new Callback<BaseResponse>() {
+            @Override
+            public void onResponse(Call<BaseResponse> call, Response<BaseResponse> response) {
+                if (response != null) {
+                    if (response.body().status) {
+                        if (progressDialog.isShowing()) {
+                            progressDialog.dismiss();
+                        }
+
+                        Toast.makeText(LanjutanPendaftaranActivity.this, "Pendaftaran berhasil.", Toast.LENGTH_LONG).show();
+                        startActivity(new Intent(LanjutanPendaftaranActivity.this, MainActivity.class));
+                        finish();
+                    } else {
+                        Toast.makeText(LanjutanPendaftaranActivity.this, "Terjadi kesalahan.", Toast.LENGTH_LONG).show();
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<BaseResponse> call, Throwable t) {
+                Log.e("daftar", t.getMessage());
+            }
+        });
+    }
+
+
     private void daftarkanPetani(String id, String uNama, String uAlamat, String lat, String longi) {
+        progressDialog = new ProgressDialog(LanjutanPendaftaranActivity.this);
+        progressDialog.setCancelable(false);
+        progressDialog.setTitle("Pesan");
+        progressDialog.setMessage("Mohon tunggu sebentar...");
+        progressDialog.show();
+
         RequestBody idPengguna = RequestBody.create(MediaType.parse("text/plain"), id);
         RequestBody nama = RequestBody.create(MediaType.parse("text/plain"), uNama);
         RequestBody alamat = RequestBody.create(MediaType.parse("text/plain"), uAlamat);
@@ -176,11 +226,15 @@ public class PendaftaranPetaniActivity extends AppCompatActivity {
             public void onResponse(Call<BaseResponse> call, Response<BaseResponse> response) {
                 if (response != null) {
                     if (response.body().status) {
-                        Log.e("hel", "salah");
-                        startActivity(new Intent(PendaftaranPetaniActivity.this, MainActivity.class));
+                        if (progressDialog.isShowing()) {
+                            progressDialog.dismiss();
+                        }
+
+                        Toast.makeText(LanjutanPendaftaranActivity.this, "Pendaftaran berhasil.", Toast.LENGTH_LONG).show();
+                        startActivity(new Intent(LanjutanPendaftaranActivity.this, MainActivity.class));
                         finish();
                     } else {
-                        Toast.makeText(PendaftaranPetaniActivity.this, "Terjadi kesalahan.", Toast.LENGTH_LONG).show();
+                        Toast.makeText(LanjutanPendaftaranActivity.this, "Terjadi kesalahan.", Toast.LENGTH_LONG).show();
                     }
                 }
             }

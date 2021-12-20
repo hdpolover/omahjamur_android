@@ -3,6 +3,7 @@ package com.riskyd.omahjamur.adapter;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,6 +18,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.google.android.material.card.MaterialCardView;
 import com.riskyd.omahjamur.R;
+import com.riskyd.omahjamur.activity.DetailPetaniActivity;
 import com.riskyd.omahjamur.api.ApiInterface;
 import com.riskyd.omahjamur.api.response.BaseResponse;
 import com.riskyd.omahjamur.api.response.JenisProdukResponse;
@@ -60,7 +62,9 @@ public class PetaniAdapter extends RecyclerView.Adapter<PetaniAdapter.ViewHolder
         holder.cv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-               Toast.makeText(context, "ptenai", Toast.LENGTH_SHORT).show();
+                Intent i = new Intent(context, DetailPetaniActivity.class);
+                i.putExtra("id_petani", list.get(position).getIdPetani());
+                context.startActivity(i);
             }
         });
 

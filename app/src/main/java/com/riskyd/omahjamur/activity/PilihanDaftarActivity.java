@@ -52,7 +52,7 @@ public class PilihanDaftarActivity extends AppCompatActivity {
                 builder.setPositiveButton("LANJUTKAN", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        Intent in = new Intent(PilihanDaftarActivity.this, PendaftaranPetaniActivity.class);
+                        Intent in = new Intent(PilihanDaftarActivity.this, LanjutanPendaftaranActivity.class);
                         in.putExtra("email", email);
                         in.putExtra("id_role", id_role);
                         startActivity(in);
