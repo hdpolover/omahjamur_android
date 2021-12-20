@@ -6,90 +6,106 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".LoginActivity"
-    android:padding="20dp">
+    >
 
-    <TextView
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textAlignment="center"
-        android:text="Selamat Datang"
-        android:textSize="25dp"
-        android:textColor="@color/colorBlack"
-        android:textStyle="bold"
-        android:padding="20dp"/>
+        android:layout_height="wrap_content">
 
-    <ImageView
-        android:layout_gravity="center"
-        android:layout_width="230dp"
-        android:layout_height="230dp"
-        android:src="@drawable/gambar"
-        android:layout_marginTop="20dp"
-        android:layout_marginBottom="20dp"/>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/textInputUsername"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <EditText
-                android:id="@+id/emailEt"
-                android:layout_height="wrap_content"
-                android:layout_width="match_parent"
-                android:hint="Email"
-                android:inputType="text"
-                android:maxLines="1"
-                android:textColor="@color/primaryTextColor" />
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/textInputPassword"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp">
+            android:orientation="vertical"
+            android:padding="20dp">
 
-            <EditText
-                android:id="@+id/passwordEt"
-                android:layout_height="wrap_content"
+            <TextView
                 android:layout_width="match_parent"
-                android:hint="Password"
-                android:inputType="textPassword"
-                android:maxLines="1"
-                android:textColor="@color/primaryTextColor" />
-        </com.google.android.material.textfield.TextInputLayout>
+                android:layout_height="wrap_content"
+                android:textAlignment="center"
+                android:text="Selamat Datang"
+                android:textSize="25dp"
+                android:textColor="@color/colorBlack"
+                android:textStyle="bold"
+                android:padding="20dp"/>
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/loginBtn"
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="20dp"
-            android:layout_marginBottom="10dp"
-            android:textSize="15dp"
-            android:backgroundTint="@color/primaryColor"
-            app:cornerRadius="11dp"
-            style="@style/Widget.MaterialComponents.Button.UnelevatedButton"
-            android:text="Login" />
+            <ImageView
+                android:layout_gravity="center"
+                android:layout_width="230dp"
+                android:layout_height="230dp"
+                android:src="@drawable/gambar"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp"/>
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textAlignment="center"
-        android:text="atau"
-        android:textSize="15dp"
-        android:textColor="@color/colorBlack"
-        android:textStyle="bold"/>
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/textInputUsername"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/daftarBtn"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="20dp"
-        android:layout_marginBottom="10dp"
-        android:textSize="15dp"
-        android:backgroundTint="@color/primaryDarkColor"
-        app:cornerRadius="11dp"
-        style="@style/Widget.MaterialComponents.Button.UnelevatedButton"
-        android:text="Masuk / Daftar" />
+                <EditText
+                    android:id="@+id/emailEt"
+                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:hint="Email"
+                    android:inputType="text"
+                    android:maxLines="1"
+                    android:textColor="@color/primaryTextColor" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/textInputPassword"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp">
+
+                <EditText
+                    android:id="@+id/passwordEt"
+                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:hint="Password"
+                    android:inputType="textPassword"
+                    android:maxLines="1"
+                    android:textColor="@color/primaryTextColor" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/loginBtn"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="10dp"
+                android:textSize="15dp"
+                android:backgroundTint="@color/primaryColor"
+                app:cornerRadius="11dp"
+                style="@style/Widget.MaterialComponents.Button.UnelevatedButton"
+                android:text="Login" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAlignment="center"
+                android:text="atau"
+                android:textSize="15dp"
+                android:textColor="@color/colorBlack"
+                android:textStyle="bold"/>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/daftarBtn"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="10dp"
+                android:textSize="15dp"
+                android:backgroundTint="@color/primaryDarkColor"
+                app:cornerRadius="11dp"
+                style="@style/Widget.MaterialComponents.Button.UnelevatedButton"
+                android:text="Masuk / Daftar" />
+
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+
 
 </LinearLayout>
