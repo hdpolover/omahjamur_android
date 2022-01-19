@@ -11,18 +11,27 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Toast;
 
 import com.github.dhaval2404.imagepicker.ImagePicker;
+import com.riskyd.omahjamur.LoginActivity;
 import com.riskyd.omahjamur.MainActivity;
 import com.riskyd.omahjamur.api.ApiClient;
 import com.riskyd.omahjamur.api.ApiInterface;
+import com.riskyd.omahjamur.api.RajaOngkirApiClient;
+import com.riskyd.omahjamur.api.RajaOngkirApiInterface;
 import com.riskyd.omahjamur.api.response.BaseResponse;
 import com.riskyd.omahjamur.api.response.PenggunaResponse;
+import com.riskyd.omahjamur.api.response.city.DataCity;
+import com.riskyd.omahjamur.api.response.city.ResponseCity;
 import com.riskyd.omahjamur.databinding.ActivityLanjutanPendaftaranBinding;
 import com.riskyd.omahjamur.preference.AppPreference;
 
 import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
 
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
@@ -35,7 +44,7 @@ public class LanjutanPendaftaranActivity extends AppCompatActivity {
     ActivityLanjutanPendaftaranBinding binding;
     private Uri imgUser;
     String email;
-    String id_role;
+    String peran;
     String nama;
     String alamat;
 
@@ -43,6 +52,13 @@ public class LanjutanPendaftaranActivity extends AppCompatActivity {
     Context context;
 
     ProgressDialog progressDialog;
+
+    RajaOngkirApiInterface apiEndpoint;
+
+    ArrayList<String> cityList = new ArrayList<>();
+    ArrayList<String> cityIdList = new ArrayList<>();
+
+    String selectedIdKota, selectedNamaKota;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,16 +68,59 @@ public class LanjutanPendaftaranActivity extends AppCompatActivity {
         setContentView(view);
 
         apiInterface = ApiClient.getClient();
+        apiEndpoint = RajaOngkirApiClient.getClient();
 
         email = getIntent().getStringExtra("email");
-        id_role = getIntent().getStringExtra("id_role");
+        peran = getIntent().getStringExtra("peran");
+
+        if (peran.equals("customer")) {
+            binding.lat.setVisibility(View.GONE);
+            binding.longi.setVisibility(View.GONE);
+        } else {
+            binding.spinnerLayout.setVisibility(View.GONE);
+        }
+
+        apiEndpoint.getCity().enqueue(new Callback<ResponseCity>() {
+            @Override
+            public void onResponse(Call<ResponseCity> call, Response<ResponseCity> response) {
+                if (response != null) {
+                    List<DataCity> dt = response.body().getRajaongkir().getResults();
+
+                    for (int i = 0; i < dt.size(); i++) {
+                        cityIdList.add(dt.get(i).cityId);
+                        cityList.add(dt.get(i).type + " " + dt.get(i).cityName);
+                    }
+
+                    ArrayAdapter<String> adapter = new ArrayAdapter<String>(LanjutanPendaftaranActivity.this, android.R.layout.simple_spinner_item, cityList);
+                    adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                    binding.spinner.setAdapter(adapter);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ResponseCity> call, Throwable t) {
+                Log.e("login", t.getMessage());
+            }
+        });
+
+        binding.spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                selectedIdKota = cityIdList.get(i);
+                selectedNamaKota = cityList.get(i);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
 
         binding.pilihFotoBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 ImagePicker.Companion.with(LanjutanPendaftaranActivity.this)
                         .compress(3000)
-                        .galleryOnly()
                         .start();
             }
         });
@@ -79,8 +138,8 @@ public class LanjutanPendaftaranActivity extends AppCompatActivity {
         boolean cekAlamat = true;
         boolean cekImg = true;
 
-        if (binding.namaEt.getText().toString().isEmpty()) {
-            binding.namaEt.setError("Mohon isi data berikut");
+        if (binding.usernameEt.getText().toString().isEmpty()) {
+            binding.usernameEt.setError("Mohon isi data berikut");
             cekNama = false;
         }
 
@@ -95,80 +154,65 @@ public class LanjutanPendaftaranActivity extends AppCompatActivity {
         }
 
         if (cekNama && cekAlamat && cekImg) {
-            nama = binding.namaEt.getText().toString().trim();
-            alamat = binding.alamatEt.getText().toString().trim();
+            if (peran.equals("customer")) {
+                daftarkanCust(email,
+                        binding.usernameEt.getText().toString().trim(),
+                        "",
+                        binding.alamatEt.getText().toString().trim(),
+                        peran,
+                        binding.noTelpEt.getText().toString().trim(),
+                        "",
+                        "");
+            } else {
+                daftarkanPetani(
+                        email,
+                        binding.usernameEt.getText().toString().trim(),
+                        "",
+                        binding.alamatEt.getText().toString().trim(),
+                        peran,
+                        binding.noTelpEt.getText().toString().trim(),
+                        binding.latitudeLokasiEt.getText().toString().trim(),
+                        binding.longitudeokasiEt.getText().toString().trim()
+                );
+            }
 
-            //insert tabel pengguna
-            apiInterface.daftar(
-                    id_role,
-                    email,
-                    ""
-            ).enqueue(new Callback<BaseResponse>() {
-                @Override
-                public void onResponse(Call<BaseResponse> call, Response<BaseResponse> response) {
-                    if (response != null) {
-                        if (response.body().status) {
-                            //get id yang baru diinsert
-                            apiInterface.get_id(
-                                    email
-                            ).enqueue(new Callback<PenggunaResponse>() {
-                                @Override
-                                public void onResponse(Call<PenggunaResponse> call, Response<PenggunaResponse> response) {
-                                    if (response != null) {
-                                        if (response.body().status) {
-                                            String id = response.body().data.get(0).idPengguna;
-                                            Log.e("id", id + ", " + id_role);
-
-                                            //save
-                                            AppPreference.saveUser(LanjutanPendaftaranActivity.this, response.body().data.get(0));
-
-                                            //lanjut insert tabel lain
-                                            if (id_role.equals("2")) {
-                                                daftarkanPetani(id, nama, alamat, "0", "0");
-                                            } else if (id_role.equals("3")) {
-                                                daftarkanCust(id, nama, alamat);
-                                            }
-                                        }
-                                    }
-                                }
-
-                                @Override
-                                public void onFailure(Call<PenggunaResponse> call, Throwable t) {
-                                    Log.e("login", t.getMessage());
-                                }
-                            });
-                        }
-                    }
-                }
-
-                @Override
-                public void onFailure(Call<BaseResponse> call, Throwable t) {
-                    Log.e("daftar", t.getMessage());
-                }
-            });
         }
     }
 
-    private void daftarkanCust(String id, String uNama, String uAlamat) {
+    private void daftarkanCust(String email, String username, String password, String alamat, String peran, String noTelp, String lat, String longi) {
         progressDialog = new ProgressDialog(LanjutanPendaftaranActivity.this);
         progressDialog.setCancelable(false);
         progressDialog.setTitle("Pesan");
         progressDialog.setMessage("Mohon tunggu sebentar...");
         progressDialog.show();
 
-        RequestBody idPengguna = RequestBody.create(MediaType.parse("text/plain"), id);
-        RequestBody nama = RequestBody.create(MediaType.parse("text/plain"), uNama);
-        RequestBody alamat = RequestBody.create(MediaType.parse("text/plain"), uAlamat);
+        RequestBody emailR = RequestBody.create(MediaType.parse("text/plain"), email);
+        RequestBody usernameR = RequestBody.create(MediaType.parse("text/plain"), username);
+        RequestBody passwordR = RequestBody.create(MediaType.parse("text/plain"), password);
+        RequestBody alR = RequestBody.create(MediaType.parse("text/plain"), alamat);
+        RequestBody pR = RequestBody.create(MediaType.parse("text/plain"), peran);
+        RequestBody nR = RequestBody.create(MediaType.parse("text/plain"), noTelp);
+        RequestBody lR = RequestBody.create(MediaType.parse("text/plain"), lat);
+        RequestBody lgR = RequestBody.create(MediaType.parse("text/plain"), longi);
+        RequestBody idKotaR = RequestBody.create(MediaType.parse("text/plain"), selectedIdKota);
+        RequestBody namaKotaR = RequestBody.create(MediaType.parse("text/plain"), selectedNamaKota);
 
         //image
         File file = new File(imgUser.getPath());
         RequestBody reqFile =  RequestBody.create(MediaType.parse("image/*"), file);
         MultipartBody.Part f =  MultipartBody.Part.createFormData("image", file.getName(), reqFile);
 
-        apiInterface.daftarCustomer(
-                idPengguna,
-                nama,
-                alamat,
+        apiInterface.daftarCst(
+                emailR,
+                usernameR,
+                passwordR,
+                alR,
+                pR,
+                nR,
+                lR,
+                lgR,
+                idKotaR,
+                namaKotaR,
                 f
         ).enqueue(new Callback<BaseResponse>() {
             @Override
@@ -179,8 +223,8 @@ public class LanjutanPendaftaranActivity extends AppCompatActivity {
                             progressDialog.dismiss();
                         }
 
-                        Toast.makeText(LanjutanPendaftaranActivity.this, "Pendaftaran berhasil.", Toast.LENGTH_LONG).show();
-                        startActivity(new Intent(LanjutanPendaftaranActivity.this, MainActivity.class));
+                        Toast.makeText(LanjutanPendaftaranActivity.this, "Pendaftaran berhasil. Silakan masuk.", Toast.LENGTH_LONG).show();
+                        startActivity(new Intent(LanjutanPendaftaranActivity.this, LoginActivity.class));
                         finish();
                     } else {
                         Toast.makeText(LanjutanPendaftaranActivity.this, "Terjadi kesalahan.", Toast.LENGTH_LONG).show();
@@ -196,30 +240,40 @@ public class LanjutanPendaftaranActivity extends AppCompatActivity {
     }
 
 
-    private void daftarkanPetani(String id, String uNama, String uAlamat, String lat, String longi) {
+    private void daftarkanPetani(String email, String username, String password, String alamat, String peran, String noTelp, String lat, String longi) {
         progressDialog = new ProgressDialog(LanjutanPendaftaranActivity.this);
         progressDialog.setCancelable(false);
         progressDialog.setTitle("Pesan");
         progressDialog.setMessage("Mohon tunggu sebentar...");
         progressDialog.show();
 
-        RequestBody idPengguna = RequestBody.create(MediaType.parse("text/plain"), id);
-        RequestBody nama = RequestBody.create(MediaType.parse("text/plain"), uNama);
-        RequestBody alamat = RequestBody.create(MediaType.parse("text/plain"), uAlamat);
-        RequestBody latitude = RequestBody.create(MediaType.parse("text/plain"), lat);
-        RequestBody longitude = RequestBody.create(MediaType.parse("text/plain"), longi);
+        RequestBody emailR = RequestBody.create(MediaType.parse("text/plain"), email);
+        RequestBody usernameR = RequestBody.create(MediaType.parse("text/plain"), username);
+        RequestBody passwordR = RequestBody.create(MediaType.parse("text/plain"), password);
+        RequestBody alR = RequestBody.create(MediaType.parse("text/plain"), alamat);
+        RequestBody pR = RequestBody.create(MediaType.parse("text/plain"), peran);
+        RequestBody nR = RequestBody.create(MediaType.parse("text/plain"), noTelp);
+        RequestBody lR = RequestBody.create(MediaType.parse("text/plain"), lat);
+        RequestBody lgR = RequestBody.create(MediaType.parse("text/plain"), longi);
+        RequestBody idKotaR = RequestBody.create(MediaType.parse("text/plain"), "0");
+        RequestBody namaKotaR = RequestBody.create(MediaType.parse("text/plain"), "");
 
         //image
         File file = new File(imgUser.getPath());
         RequestBody reqFile =  RequestBody.create(MediaType.parse("image/*"), file);
         MultipartBody.Part f =  MultipartBody.Part.createFormData("image", file.getName(), reqFile);
 
-        apiInterface.daftar_petani(
-                idPengguna,
-                nama,
-                alamat,
-                latitude,
-                longitude,
+        apiInterface.daftarPtn(
+                emailR,
+                usernameR,
+                passwordR,
+                alR,
+                pR,
+                nR,
+                lR,
+                lgR,
+                idKotaR,
+                namaKotaR,
                 f
         ).enqueue(new Callback<BaseResponse>() {
             @Override
@@ -230,8 +284,8 @@ public class LanjutanPendaftaranActivity extends AppCompatActivity {
                             progressDialog.dismiss();
                         }
 
-                        Toast.makeText(LanjutanPendaftaranActivity.this, "Pendaftaran berhasil.", Toast.LENGTH_LONG).show();
-                        startActivity(new Intent(LanjutanPendaftaranActivity.this, MainActivity.class));
+                        Toast.makeText(LanjutanPendaftaranActivity.this, "Pendaftaran berhasil. Silakan masuk.", Toast.LENGTH_LONG).show();
+                        startActivity(new Intent(LanjutanPendaftaranActivity.this, LoginActivity.class));
                         finish();
                     } else {
                         Toast.makeText(LanjutanPendaftaranActivity.this, "Terjadi kesalahan.", Toast.LENGTH_LONG).show();

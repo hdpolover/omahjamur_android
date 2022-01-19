@@ -10,11 +10,11 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.riskyd.omahjamur.adapter.ProdukAdapter;
+import com.riskyd.omahjamur.adapter.ProdukVerticalAdapter;
 import com.riskyd.omahjamur.api.ApiClient;
 import com.riskyd.omahjamur.api.ApiInterface;
 import com.riskyd.omahjamur.api.response.BaseResponse;
 import com.riskyd.omahjamur.api.response.PenggunaResponse;
-import com.riskyd.omahjamur.api.response.PetaniResponse;
 import com.riskyd.omahjamur.api.response.ProdukResponse;
 import com.riskyd.omahjamur.databinding.ActivityDaftarPetaniBinding;
 import com.riskyd.omahjamur.databinding.ActivityDaftarProdukPetaniBinding;
@@ -43,11 +43,8 @@ public class DaftarProdukPetaniActivity extends AppCompatActivity {
         apiInterface = ApiClient.getClient();
 
         setSupportActionBar(binding.toolbar);
-        setTitle("");
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setDisplayShowHomeEnabled(true);
 
-        binding.btnTambah.setOnClickListener(new View.OnClickListener() {
+        binding.tambahProdukBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(DaftarProdukPetaniActivity.this, TambahProdukActivity.class));
@@ -57,36 +54,27 @@ public class DaftarProdukPetaniActivity extends AppCompatActivity {
         binding.rv.setHasFixedSize(true);
         binding.rv.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
 
-        PenggunaResponse.PenggunaModel u = AppPreference.getUser(DaftarProdukPetaniActivity.this);
-        apiInterface.getDetailPetani(u.idPengguna).enqueue(new Callback<PetaniResponse>() {
+        apiInterface.getProdukPengrajin(AppPreference.getUser(this).idPengguna).enqueue(new Callback<ProdukResponse>() {
             @Override
-            public void onResponse(Call<PetaniResponse> call, Response<PetaniResponse> response) {
+            public void onResponse(Call<ProdukResponse> call, Response<ProdukResponse> response) {
                 if (response.body().status) {
-                    PetaniResponse.PetaniModel pm = response.body().data.get(0);
+                    List<ProdukResponse.ProdukModel> list = new ArrayList<>();
 
-                    apiInterface.getProdukPetani(pm.getIdPetani()).enqueue(new Callback<ProdukResponse>() {
-                        @Override
-                        public void onResponse(Call<ProdukResponse> call, Response<ProdukResponse> response) {
-                            if (response.body().status) {
-                                List<ProdukResponse.ProdukModel> list = new ArrayList<>();
+                    list.addAll(response.body().data);
 
-                                list.addAll(response.body().data);
+                    binding.rv.setAdapter(new ProdukVerticalAdapter(list, getApplicationContext()));
 
-                                binding.rv.setAdapter(new ProdukAdapter(list, getApplicationContext()));
-                            }
-                        }
-
-                        @Override
-                        public void onFailure(Call<ProdukResponse> call, Throwable t) {
-
-                        }
-                    });
+                    if (list.isEmpty()) {
+                        binding.noDataLayout.setVisibility(View.VISIBLE);
+                    } else {
+                        binding.noDataLayout.setVisibility(View.GONE);
+                    }
                 }
             }
 
             @Override
-            public void onFailure(Call<PetaniResponse> call, Throwable t) {
-                Toast.makeText(DaftarProdukPetaniActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+            public void onFailure(Call<ProdukResponse> call, Throwable t) {
+
             }
         });
 

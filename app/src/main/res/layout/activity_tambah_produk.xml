@@ -55,7 +55,7 @@
                     android:layout_height="wrap_content"
                     android:text="Jenis Produk"
                     android:textSize="19dp"
-                    android:textColor="@color/colorBlack"/>
+                    android:textColor="@color/black"/>
 
                 <Spinner
                     android:layout_marginTop="10dp"
@@ -74,7 +74,7 @@
                     android:id="@+id/judulEt"
                     android:layout_height="wrap_content"
                     android:layout_width="match_parent"
-                    android:hint="Judul Produk"
+                    android:hint="Nama Produk"
                     android:inputType="text"
                     android:maxLines="1"
                     android:textColor="@color/primaryTextColor" />
@@ -91,6 +91,7 @@
                     android:layout_height="wrap_content"
                     android:layout_width="match_parent"
                     android:hint="Deskripsi Produk"
+                    android:maxLines="5"
                     android:inputType="text"
                     android:textColor="@color/primaryTextColor" />
 
@@ -121,6 +122,21 @@
                     android:layout_height="wrap_content"
                     android:layout_width="match_parent"
                     android:hint="Stok Produk"
+                    android:inputType="number"
+                    android:textColor="@color/primaryTextColor" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp">
+
+                <EditText
+                    android:id="@+id/beratEt"
+                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:hint="Berat (gram)"
                     android:inputType="number"
                     android:textColor="@color/primaryTextColor" />
 

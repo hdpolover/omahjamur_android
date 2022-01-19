@@ -41,63 +41,114 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:orientation="vertical"
             android:padding="20dp">
 
-            <de.hdodenhof.circleimageview.CircleImageView
-                android:layout_width="150dp"
-                android:layout_height="150dp"
-                android:layout_gravity="center"
-                android:src="@drawable/gambar"
-                android:id="@+id/fotoPetaniIv"
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/validasiBtn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Validasi Petani" />
+
+            <LinearLayout
+                android:layout_marginTop="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:layout_width="120dp"
+                    android:layout_height="120dp"
+                    android:src="@drawable/profil"
+                    android:id="@+id/detailProfilIv" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginLeft="20dp">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Nama petani"
+                        android:id="@+id/namaPengrajinTv"
+                        android:textColor="@color/black"
+                        android:textStyle="bold"
+                        android:textSize="20dp"/>
+
+                    <TextView
+                        android:id="@+id/noTelpTv"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:text="no telp"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Terdaftar sejak ..."
+                        android:id="@+id/daftarTv"
+                        android:layout_marginTop="10dp"/>
+
+                    <TextView
+                        android:id="@+id/alamatTv"
+                        android:layout_marginTop="10dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="start"
+                        android:gravity="center_vertical"
+                        android:layout_weight="1"
+                        android:text="Alamat"/>
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/arahBtn"
+                        android:layout_width="match_parent"
+                        android:layout_marginTop="10dp"
+                        android:layout_height="wrap_content"
+                        android:text="Arah" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/colorGray"
+                android:layout_marginTop="20dp"
                 android:layout_marginBottom="20dp"/>
 
-            <TextView
+            <androidx.recyclerview.widget.RecyclerView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Nama"
-                android:layout_marginBottom="5dp" />
+                android:id="@+id/rv"/>
 
-            <TextView
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Nama Petani"
-                android:textColor="@color/colorBlack"
-                android:id="@+id/namaTv"
-                android:layout_marginBottom="10dp"/>
+                android:id="@+id/noProdukLayout"
+                android:orientation="vertical"
+                android:layout_marginTop="50dp"
+                android:layout_gravity="center">
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Alamat"
-                android:layout_marginBottom="5dp" />
+                <ImageView
+                    android:layout_width="200dp"
+                    android:layout_height="200dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/ic_no_data"/>
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Alamat Petani"
-                android:textColor="@color/colorBlack"
-                android:id="@+id/alamatTv"
-                android:layout_marginBottom="10dp"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:layout_gravity="center"
+                    android:textColor="@color/black"
+                    android:textSize="15dp"
+                    android:text="Petani ini belum memiliki produk."/>
 
-
-            <Button
-                android:layout_marginTop="30dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="VALIDASI PENGAJUAN"
-                android:id="@+id/btnValidasi"
-                />
-
-            <Button
-                android:layout_marginTop="10dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:backgroundTint="@color/design_default_color_secondary"
-                android:text="Lihat detail lengkap"
-                android:id="@+id/btnLihatDetail"
-                />
+            </LinearLayout>
 
         </LinearLayout>
 

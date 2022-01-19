@@ -21,14 +21,14 @@
             android:layout_height="150dp"
             android:layout_gravity="center"
             android:contentDescription="Gambar Produk"
-            android:src="@mipmap/ic_launcher" />
+            android:src="@drawable/ic_image_black" />
 
         <TextView
             android:id="@+id/judulProduk"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Judul"
-            android:textColor="@color/colorBlack"
+            android:textColor="@color/black"
             android:layout_marginTop="10dp"
             android:textSize="17dp"
             android:layout_marginBottom="5dp"
@@ -39,7 +39,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Rp.99999"
-            android:textColor="@color/colorBlack"
+            android:textColor="@color/black"
             android:layout_marginBottom="15dp"/>
 
     </LinearLayout>

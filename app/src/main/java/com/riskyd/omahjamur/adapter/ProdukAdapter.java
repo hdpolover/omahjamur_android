@@ -18,7 +18,7 @@ import com.riskyd.omahjamur.R;
 import com.riskyd.omahjamur.activity.DetailPetaniActivity;
 import com.riskyd.omahjamur.activity.DetailProdukActivity;
 import com.riskyd.omahjamur.api.ApiInterface;
-import com.riskyd.omahjamur.api.response.PetaniResponse;
+import com.riskyd.omahjamur.api.Helper;
 import com.riskyd.omahjamur.api.response.ProdukResponse;
 
 import java.util.List;
@@ -45,7 +45,7 @@ public class ProdukAdapter extends RecyclerView.Adapter<ProdukAdapter.ViewHolder
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new ViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.item_produk_petani, parent, false));
+        return new ViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.item_produk, parent, false));
     }
 
     @Override
@@ -55,15 +55,13 @@ public class ProdukAdapter extends RecyclerView.Adapter<ProdukAdapter.ViewHolder
             public void onClick(View view) {
                 Intent i = new Intent(context, DetailProdukActivity.class);
                 i.putExtra("id_produk", list.get(position).getIdProduk());
-                i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK |Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 context.startActivity(i);
             }
         });
 
-        holder.judul.setText(list.get(position).getJudul());
-        holder.stok.setText(list.get(position).getStok() + " stok");
-        holder.jenis.setText(list.get(position).getDeskripsiJp() + " " + list.get(position).getDeskripsiDjp());
-        holder.harga.setText("Rp." + list.get(position).getHarga());
+        holder.judul.setText(list.get(position).getNama());
+        holder.harga.setText(Helper.formatRupiah(Integer.parseInt(list.get(position).getHargaSatuan())));
 
         Glide.with(context)
                 .load(context.getString(R.string.base_url) + context.getString(R.string.produk_link) + list.get(position).getGambar())
@@ -77,17 +75,15 @@ public class ProdukAdapter extends RecyclerView.Adapter<ProdukAdapter.ViewHolder
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        private TextView judul, harga, stok, jenis;
+        private TextView judul, harga;
         private ImageView iv;
         private MaterialCardView cv;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            judul = itemView.findViewById(R.id.judulTv);
-            harga = itemView.findViewById(R.id.hargaTv);
-            stok = itemView.findViewById(R.id.stokTv);
-            jenis = itemView.findViewById(R.id.jenisTv);
-            iv = itemView.findViewById(R.id.fotoProdukIv);
+            judul = itemView.findViewById(R.id.judulProduk);
+            harga = itemView.findViewById(R.id.harga);
+            iv = itemView.findViewById(R.id.gambarProduk);
             cv = itemView.findViewById(R.id.cv);
         }
     }

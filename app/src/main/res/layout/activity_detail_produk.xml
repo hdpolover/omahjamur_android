@@ -41,73 +41,175 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="20dp">
 
             <ImageView
                 android:layout_width="match_parent"
-                android:layout_height="400dp"
+                android:layout_height="300dp"
                 android:src="@drawable/ic_image_black"
-                android:id="@+id/produkIv"/>
+                android:id="@+id/gambarProdukTv"/>
+
+            <TextView
+                android:layout_marginTop="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Nama Produk"
+                android:id="@+id/namaProdukTv"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:textSize="20dp"/>
+
+            <com.google.android.material.chip.Chip
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Kategrori"
+                android:backgroundTint="@color/design_default_color_secondary"
+                android:id="@+id/chipProduk"/>
+
+            <TextView
+                android:id="@+id/hargaTv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="Rp. 9999"
+                android:textColor="@color/black"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="stok"
+                android:id="@+id/stokTv"
+                android:layout_marginTop="10dp"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="berat"
+                android:id="@+id/beratTv"
+                android:layout_marginTop="10dp"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/colorGray"
+                android:layout_marginBottom="10dp"
+                android:layout_marginTop="20dp"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Info Petani"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:layout_marginBottom="10dp"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="20dp"
-                android:orientation="vertical">
+                android:orientation="horizontal"
+                android:id="@+id/pengrajinLayout">
 
-                <TextView
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    android:src="@drawable/profil"
+                    android:id="@+id/foroPengrajinIv"
+                    android:layout_marginRight="20dp"/>
+
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Judul Produk"
-                    android:textColor="@color/colorBlack"
-                    android:id="@+id/judulProdukTv"
-                    android:textStyle="bold"
-                    android:textSize="20dp"
-                    android:layout_marginBottom="10dp"/>
+                    android:orientation="vertical">
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Rp. 9999"
-                    android:textColor="@color/colorBlack"
-                    android:id="@+id/hargaTv"
-                    android:textSize="18dp"
-                    android:layout_marginBottom="10dp"/>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Nama Pengrajin"
+                        android:id="@+id/namaPengrajinTv"
+                        android:textColor="@color/black"/>
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="20 item tersisa"
-                    android:id="@+id/stokTv"
-                    android:layout_marginBottom="5dp" />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="notelp"
+                        android:id="@+id/noTelpTv"
+                        android:textColor="@color/black"
+                        android:layout_marginTop="10dp"/>
 
-                <TextView
-                    android:layout_marginTop="20dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Deskripsi"
-                    android:textStyle="bold"
-                    android:textColor="@color/colorBlack"
-                    android:layout_marginBottom="5dp" />
+                    <TextView
+                        android:id="@+id/alamatPengrajinTv"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:text="alamat"
+                        android:textColor="@color/black" />
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Deskripsi Produk"
-                    android:id="@+id/deskripsiTv"
-                    android:layout_marginBottom="10dp"/>
 
-                <Button
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Edit"
-                    android:layout_marginTop="20dp"
-                    android:id="@+id/editProdukBtn"/>
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/colorGray"
+                android:layout_marginBottom="20dp"
+                android:layout_marginTop="10dp"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Deskripsi Produk"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:layout_marginBottom="10dp"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Deskripsi"
+                android:id="@+id/deksripsiTv"
+                android:layout_marginBottom="30dp"
+                android:textColor="@color/black"/>
+
+            <com.google.android.material.button.MaterialButton
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:text="EDIT PRODUK"
+                android:id="@+id/editProdukBtn"
+                android:layout_marginTop="50dp"
+                android:layout_marginBottom="20dp"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:id="@+id/custLayout"
+                android:layout_marginTop="50dp"
+                android:layout_marginBottom="20dp">
+
+                <com.google.android.material.button.MaterialButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="60dp"
+                    android:layout_weight="1"
+                    android:text="MASUK KERANJANG"
+                    android:layout_marginRight="10dp"
+                    android:id="@+id/keranjangBtn"/>
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/cekoutBtn"
+                    android:layout_weight="1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="60dp"
+                    android:layout_marginLeft="10dp"
+                    android:text="BAYAR SEKARANG" />
 
             </LinearLayout>
 
         </LinearLayout>
+
 
     </androidx.core.widget.NestedScrollView>
 

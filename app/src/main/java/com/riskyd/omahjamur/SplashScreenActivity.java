@@ -20,10 +20,11 @@ public class SplashScreenActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivitySplashScreenBinding.inflate(getLayoutInflater());
         View view = binding.getRoot();
-        //AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         setContentView(view);
 
         binding.textViewVersion.setText("Ver " + BuildConfig.VERSION_NAME);
+        binding.appNameTv.setText("Omah Jamur");
 
         toMainActivity();
     }

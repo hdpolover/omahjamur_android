@@ -14,10 +14,7 @@ import com.riskyd.omahjamur.MainActivity;
 import com.riskyd.omahjamur.R;
 import com.riskyd.omahjamur.api.ApiClient;
 import com.riskyd.omahjamur.api.ApiInterface;
-import com.riskyd.omahjamur.api.response.AdminResponse;
-import com.riskyd.omahjamur.api.response.CustomerResponse;
 import com.riskyd.omahjamur.api.response.PenggunaResponse;
-import com.riskyd.omahjamur.api.response.PetaniResponse;
 import com.riskyd.omahjamur.databinding.ActivityDaftarPetaniBinding;
 import com.riskyd.omahjamur.databinding.ActivityProfilBinding;
 import com.riskyd.omahjamur.preference.AppPreference;
@@ -40,103 +37,63 @@ public class ProfilActivity extends AppCompatActivity {
 
         apiInterface = ApiClient.getClient();
 
-        setSupportActionBar(binding.toolbar);
-        setTitle("");
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setDisplayShowHomeEnabled(true);
-
         setView();
+
+        setSupportActionBar(binding.toolbar);
 
         binding.keluarBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 FirebaseAuth auth = FirebaseAuth.getInstance();
                 auth.signOut();
+
                 AppPreference.removeUser(ProfilActivity.this);
                 startActivity(new Intent(ProfilActivity.this, LoginActivity.class));
                 finish();
             }
         });
 
-//        Glide.with(getApplicationContext())
-//                .load(getString(R.string.link) + u.)
-//                .centerCrop()
-//                .placeholder(R.drawable.gambar)
-//                .into(binding.fotoUserIv);
+        binding.tentangBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(ProfilActivity.this, TentangAplikasiActivity.class));
+            }
+        });
+
+        binding.bantuanBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(ProfilActivity.this, BantuanActivity.class));
+            }
+        });
+
+        binding.editProfilBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(ProfilActivity.this, EditProfilCustomerActivity.class));
+                finish();
+            }
+        });
+
     }
 
     private void setView() {
         PenggunaResponse.PenggunaModel u = AppPreference.getUser(ProfilActivity.this);
 
-        if (u.idRole.equals("1")) {
-            apiInterface.getDetailAdmin(u.idPengguna).enqueue(new Callback<AdminResponse>() {
-                @Override
-                public void onResponse(Call<AdminResponse> call, Response<AdminResponse> response) {
-                    if (response.body().status) {
-                        AdminResponse.AdminModel pm = response.body().data.get(0);
-                        Glide.with(getApplicationContext())
-                                .load(getString(R.string.base_url) + getString(R.string.profile_link) + pm.getFoto())
-                                .centerCrop()
-                                .placeholder(R.drawable.gambar)
-                                .into(binding.fotoProfilIv);
+        Glide.with(getApplicationContext())
+                .load(getString(R.string.base_url) + getString(R.string.profile_link) + u.getFoto())
+                .centerCrop()
+                .placeholder(R.drawable.gambar)
+                .into(binding.fotoProfilIv);
 
-                        binding.namaPenggunaTv.setText(pm.getNama());
+        binding.namaPenggunaTv.setText(u.getUsername());
 
-                        binding.peranTv.setText("Admin");
-                    }
-                }
-
-                @Override
-                public void onFailure(Call<AdminResponse> call, Throwable t) {
-                    Toast.makeText(ProfilActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
-                }
-            });
-        } else if (u.idRole.equals("2")) {
-            apiInterface.getDetailPetani(u.idPengguna).enqueue(new Callback<PetaniResponse>() {
-                @Override
-                public void onResponse(Call<PetaniResponse> call, Response<PetaniResponse> response) {
-                    if (response.body().status) {
-                        PetaniResponse.PetaniModel pm = response.body().data.get(0);
-                        Glide.with(getApplicationContext())
-                                .load(getString(R.string.base_url) + getString(R.string.profile_link) + pm.getFoto())
-                                .centerCrop()
-                                .placeholder(R.drawable.gambar)
-                                .into(binding.fotoProfilIv);
-
-                        binding.namaPenggunaTv.setText(pm.getNama());
-
-                        binding.peranTv.setText("Petani");
-                    }
-                }
-
-                @Override
-                public void onFailure(Call<PetaniResponse> call, Throwable t) {
-                    Toast.makeText(ProfilActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
-                }
-            });
+        if (u.peran.equals("admin")) {
+            binding.peranTv.setText("Admin");
+        } else if (u.peran.equals("petani")) {
+            binding.peranTv.setText("Petani");
         } else {
-            apiInterface.getDetailCustomer(u.idPengguna).enqueue(new Callback<CustomerResponse>() {
-                @Override
-                public void onResponse(Call<CustomerResponse> call, Response<CustomerResponse> response) {
-                    if (response.body().status) {
-                        CustomerResponse.CustomerModel pm = response.body().data.get(0);
-                        Glide.with(getApplicationContext())
-                                .load(getString(R.string.base_url) + getString(R.string.profile_link) + pm.getFoto())
-                                .centerCrop()
-                                .placeholder(R.drawable.gambar)
-                                .into(binding.fotoProfilIv);
-
-                        binding.namaPenggunaTv.setText(pm.getNama());
-
-                        binding.peranTv.setText("Customer");
-                    }
-                }
-
-                @Override
-                public void onFailure(Call<CustomerResponse> call, Throwable t) {
-                    Toast.makeText(ProfilActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
-                }
-            });
+            binding.peranTv.setText("Customer");
         }
     }
 }

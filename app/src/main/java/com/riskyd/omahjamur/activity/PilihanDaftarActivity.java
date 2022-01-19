@@ -15,7 +15,7 @@ import com.riskyd.omahjamur.databinding.ActivityPilihanDaftarBinding;
 
 public class PilihanDaftarActivity extends AppCompatActivity {
     ActivityPilihanDaftarBinding binding;
-    String id_role = "3";
+    String id_role = "customer";
     String peran = "Customer";
 
     @Override
@@ -32,11 +32,11 @@ public class PilihanDaftarActivity extends AppCompatActivity {
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
                 switch (i) {
                     case R.id.radioButtonCustomer:
-                        id_role = "3";
+                        id_role = "customer";
                         peran = "Customer";
                         break;
                     case R.id.radioButtonPetani:
-                        id_role = "2";
+                        id_role = "petani";
                         peran = "Petani";
                         break;
                 }
@@ -54,7 +54,7 @@ public class PilihanDaftarActivity extends AppCompatActivity {
                     public void onClick(DialogInterface dialogInterface, int i) {
                         Intent in = new Intent(PilihanDaftarActivity.this, LanjutanPendaftaranActivity.class);
                         in.putExtra("email", email);
-                        in.putExtra("id_role", id_role);
+                        in.putExtra("peran", id_role);
                         startActivity(in);
                     }
                 });

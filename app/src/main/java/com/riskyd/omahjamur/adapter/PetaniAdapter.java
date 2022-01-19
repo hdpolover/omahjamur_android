@@ -21,8 +21,7 @@ import com.riskyd.omahjamur.R;
 import com.riskyd.omahjamur.activity.DetailPetaniActivity;
 import com.riskyd.omahjamur.api.ApiInterface;
 import com.riskyd.omahjamur.api.response.BaseResponse;
-import com.riskyd.omahjamur.api.response.JenisProdukResponse;
-import com.riskyd.omahjamur.api.response.PetaniResponse;
+import com.riskyd.omahjamur.api.response.PenggunaResponse;
 
 import java.util.List;
 
@@ -31,11 +30,11 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class PetaniAdapter extends RecyclerView.Adapter<PetaniAdapter.ViewHolder> {
-    private static List<PetaniResponse.PetaniModel> list;
+    private static List<PenggunaResponse.PenggunaModel> list;
     Context context;
     ApiInterface apiInterface;
 
-    public PetaniAdapter(List<PetaniResponse.PetaniModel> list, Context context, ApiInterface apiInterface) {
+    public PetaniAdapter(List<PenggunaResponse.PenggunaModel> list, Context context, ApiInterface apiInterface) {
         PetaniAdapter.list = list;
         this.context = context;
         this.apiInterface = apiInterface;
@@ -63,12 +62,13 @@ public class PetaniAdapter extends RecyclerView.Adapter<PetaniAdapter.ViewHolder
             @Override
             public void onClick(View view) {
                 Intent i = new Intent(context, DetailPetaniActivity.class);
-                i.putExtra("id_petani", list.get(position).getIdPetani());
+                i.putExtra("id_pengguna", list.get(position).getIdPengguna());
+                i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 context.startActivity(i);
             }
         });
 
-        holder.nama.setText(list.get(position).getNama());
+        holder.nama.setText(list.get(position).getUsername());
         holder.alamat.setText(list.get(position).getAlamat());
 
         Glide.with(context)
@@ -92,11 +92,7 @@ public class PetaniAdapter extends RecyclerView.Adapter<PetaniAdapter.ViewHolder
             nama = itemView.findViewById(R.id.namaTv);
             alamat = itemView.findViewById(R.id.alamatTv);
             iv = itemView.findViewById(R.id.Iv);
-            cv = itemView.findViewById(R.id.jpCv);
+            cv = itemView.findViewById(R.id.cv);
         }
-    }
-
-    public static List<PetaniResponse.PetaniModel> getList() {
-        return list;
     }
 }

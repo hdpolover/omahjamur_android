@@ -34,89 +34,107 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <LinearLayout
+        <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="400dp"
-                android:src="@drawable/ic_image_black"
-                android:id="@+id/produkIv"/>
+            android:layout_height="wrap_content">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="20dp"
                 android:orientation="vertical">
 
-                <TextView
+                <ImageView
+                    android:id="@+id/produkIv"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Judul Produk"
-                    android:textColor="@color/colorBlack"
-                    android:id="@+id/judulProdukTv"
-                    android:textStyle="bold"
-                    android:textSize="20dp"
-                    android:layout_marginBottom="10dp"/>
+                    android:layout_height="400dp"
+                    android:src="@drawable/ic_image_black" />
 
-                <TextView
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Rp. 9999"
-                    android:textColor="@color/colorBlack"
-                    android:id="@+id/hargaTv"
-                    android:textSize="18dp"
-                    android:layout_marginBottom="10dp"/>
+                    android:orientation="vertical"
+                    android:padding="20dp">
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="20 item tersisa"
-                    android:id="@+id/stokTv"
-                    android:layout_marginBottom="5dp" />
+                    <TextView
+                        android:id="@+id/judulProdukTv"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="10dp"
+                        android:text="Judul Produk"
+                        android:textColor="@color/black"
+                        android:textSize="20dp"
+                        android:textStyle="bold" />
 
-                <TextView
-                    android:layout_marginTop="20dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Deskripsi"
-                    android:textStyle="bold"
-                    android:textColor="@color/colorBlack"
-                    android:layout_marginBottom="5dp" />
+                    <TextView
+                        android:id="@+id/hargaTv"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="10dp"
+                        android:text="Rp. 9999"
+                        android:textColor="@color/black"
+                        android:textSize="18dp" />
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Deskripsi Produk"
-                    android:id="@+id/deskripsiTv"
-                    android:layout_marginBottom="10dp"/>
+                    <TextView
+                        android:id="@+id/beratTv"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="5dp"
+                        android:text="1000 gram / 1 kilogram per item yang ditampilkan"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/stokTv"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="5dp"
+                        android:text="20 item tersisa" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginBottom="5dp"
+                        android:text="Deskripsi"
+                        android:textColor="@color/black"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/deskripsiTv"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="10dp"
+                        android:text="Deskripsi Produk" />
+
+                </LinearLayout>
 
             </LinearLayout>
 
-        </LinearLayout>
+        </androidx.core.widget.NestedScrollView>
+
 
         <LinearLayout
-            android:layout_alignParentBottom="true"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_margin="20dp">
+            android:layout_alignParentBottom="true"
+            android:layout_margin="20dp"
+            android:orientation="horizontal">
 
             <com.google.android.material.button.MaterialButton
-                android:layout_weight="1"
+                android:id="@+id/keranjangBtn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:icon="@drawable/ic_cart"
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="10dp"
+                android:layout_weight="1"
                 android:text="Keranjang"
-                android:layout_marginRight="10dp"/>
+                app:icon="@drawable/ic_cart" />
 
             <com.google.android.material.button.MaterialButton
-                android:layout_weight="1"
+                android:id="@+id/cekoutBtn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Beli Sekarang"/>
+                android:layout_weight="1"
+                android:text="Beli Sekarang" />
 
         </LinearLayout>
 

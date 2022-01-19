@@ -40,67 +40,147 @@
         android:layout_height="wrap_content">
 
         <LinearLayout
-            android:layout_marginTop="30dp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="30dp">
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-            <de.hdodenhof.circleimageview.CircleImageView
-                android:id="@+id/fotoPenggunaIv"
-                android:layout_width="200dp"
-                android:layout_height="200dp"
-                android:layout_gravity="center"
-                android:src="@drawable/foto" />
-
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/pilihFotoBtn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Pilih Foto"
-                android:layout_gravity="center"
-                app:cornerRadius="11dp"
-                android:layout_marginTop="20dp"/>
-
-            <com.google.android.material.textfield.TextInputLayout
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp">
+                android:orientation="vertical"
+                android:padding="20dp">
 
-                <EditText
-                    android:id="@+id/namaEt"
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/fotoPenggunaIv"
+                    android:layout_width="200dp"
+                    android:layout_height="200dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/profil" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/pilihFotoBtn"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:text="Pilih Foto"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="20dp"/>
+
+                <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
-                    android:hint="Nama"
-                    android:inputType="text"
-                    android:maxLines="1"
-                    android:textColor="@color/primaryTextColor" />
-
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp">
-
-                <EditText
-                    android:id="@+id/alamatEt"
                     android:layout_height="wrap_content"
-                    android:layout_width="match_parent"
-                    android:hint="Alamat"
-                    android:inputType="text"
-                    android:maxLines="1"
-                    android:textColor="@color/primaryTextColor" />
-            </com.google.android.material.textfield.TextInputLayout>
+                    android:layout_marginTop="20dp">
 
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/simpanBtn"
-                android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:text="Simpan"
-                android:layout_gravity="center"
-                app:cornerRadius="11dp"
-                android:layout_marginTop="30dp"/>
+                    <EditText
+                        android:id="@+id/usernameEt"
+                        android:layout_height="wrap_content"
+                        android:layout_width="match_parent"
+                        android:hint="Nama"
+                        android:inputType="text"
+                        android:maxLines="1"
+                        android:textColor="@color/black" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:id="@+id/telp">
+
+                    <EditText
+                        android:id="@+id/noTelpEt"
+                        android:layout_height="wrap_content"
+                        android:layout_width="match_parent"
+                        android:hint="Nomor Telepon"
+                        android:inputType="phone"
+                        android:maxLines="1"
+                        android:textColor="@color/black" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:id="@+id/al">
+
+                    <EditText
+                        android:id="@+id/alamatEt"
+                        android:layout_height="wrap_content"
+                        android:layout_width="match_parent"
+                        android:hint="Alamat"
+                        android:inputType="text"
+                        android:minLines="1"
+                        android:maxLines="5"
+                        android:textColor="@color/black" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:id="@+id/lat">
+
+                    <EditText
+                        android:id="@+id/latitudeLokasiEt"
+                        android:layout_height="wrap_content"
+                        android:layout_width="match_parent"
+                        android:hint="Latitude Lokasi"
+                        android:inputType="text"
+                        android:minLines="1"
+                        android:maxLines="5"
+                        android:textColor="@color/black" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:id="@+id/longi">
+
+                    <EditText
+                        android:id="@+id/longitudeokasiEt"
+                        android:layout_height="wrap_content"
+                        android:layout_width="match_parent"
+                        android:hint="Longitude Lokasi"
+                        android:inputType="text"
+                        android:minLines="1"
+                        android:maxLines="5"
+                        android:textColor="@color/black" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:id="@+id/spinnerLayout">
+
+                    <TextView
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:text="Kota Tujuan Pengiriman"
+                        android:textColor="@color/black"
+                        android:textSize="18dp"
+                        android:layout_marginBottom="10dp"/>
+
+                    <Spinner
+                        android:id="@+id/spinner"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/black"
+                        android:textSize="18dp"/>
+
+                </LinearLayout>
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/simpanBtn"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:text="Simpan"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="30dp"/>
+
+            </LinearLayout>
 
         </LinearLayout>
 

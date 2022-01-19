@@ -18,7 +18,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="@color/colorBlack"
+            android:textColor="@color/black"
             android:text="Jenis Produk"
             android:id="@+id/deskripsiJpTv"/>
 

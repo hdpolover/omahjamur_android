@@ -2,14 +2,17 @@ package com.riskyd.omahjamur.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.riskyd.omahjamur.R;
 import com.riskyd.omahjamur.api.ApiClient;
 import com.riskyd.omahjamur.api.ApiInterface;
+import com.riskyd.omahjamur.api.Helper;
 import com.riskyd.omahjamur.api.response.ProdukResponse;
 import com.riskyd.omahjamur.databinding.ActivityDetailProdukCustomerBinding;
 import com.riskyd.omahjamur.databinding.ActivityKatalogProdukCustomerBinding;
@@ -35,9 +38,6 @@ public class DetailProdukCustomerActivity extends AppCompatActivity {
         apiInterface = ApiClient.getClient();
 
         setSupportActionBar(binding.toolbar);
-        setTitle("");
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setDisplayShowHomeEnabled(true);
 
         idProduk = getIntent().getStringExtra("id_produk");
 
@@ -56,8 +56,10 @@ public class DetailProdukCustomerActivity extends AppCompatActivity {
 
                         binding.stokTv.setText(pm.getStok() + " item tersisa");
 
-                        binding.judulProdukTv.setText(pm.getJudul());
+                        binding.judulProdukTv.setText(pm.getNama());
                         binding.deskripsiTv.setText(pm.getDeskripsi());
+                        binding.hargaTv.setText(Helper.formatRupiah(Integer.parseInt(pm.getHargaSatuan())));
+                        binding.beratTv.setText(pm.getBerat() + " gram / " + (Integer.parseInt(pm.getBerat()) / 1000) + " kilogram per item yang ditampilkan");
                     }
                 }
             }
@@ -65,6 +67,20 @@ public class DetailProdukCustomerActivity extends AppCompatActivity {
             @Override
             public void onFailure(Call<ProdukResponse> call, Throwable t) {
                 Log.e("login", t.getMessage());
+            }
+        });
+
+        binding.keranjangBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(getApplicationContext(), "Berhasil memasukan produk ke keranjang.", Toast.LENGTH_LONG).show();
+            }
+        });
+
+        binding.cekoutBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(DetailProdukCustomerActivity.this, CekOutActivity.class));
             }
         });
     }

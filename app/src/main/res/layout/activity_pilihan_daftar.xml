@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:text="Anda belum memiliki akun. Silakan pilih peran pengguna dan klik tombol Daftar."
         android:textStyle="bold"
-        android:textColor="@color/colorBlack"
+        android:textColor="@color/black"
         android:textSize="25dp"/>
 
     <LinearLayout
@@ -27,17 +27,17 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Peran pengguna"
-            android:textColor="@color/colorBlack"
+            android:textColor="@color/black"
             android:textSize="20dp"
             android:lineSpacingExtra="3sp"/>
 
         <ImageView
-            android:layout_marginTop="20dp"
-            android:layout_marginBottom="20dp"
+            android:layout_marginTop="40dp"
+            android:layout_marginBottom="40dp"
             android:layout_gravity="center"
-            android:layout_width="200dp"
-            android:layout_height="200dp"
-            android:src="@drawable/gambar"/>
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:src="@drawable/logo"/>
 
         <RadioGroup
             android:id="@+id/radioGroup"
@@ -52,7 +52,7 @@
                 android:id="@+id/radioButtonCustomer"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/colorBlack"
+                android:textColor="@color/black"
                 android:layout_gravity="center"
                 android:text="Customer"
                 android:layout_marginRight="20dp"
@@ -64,7 +64,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:textColor="@color/colorBlack"
+                android:textColor="@color/black"
                 android:text="Petani"/>
 
         </RadioGroup>

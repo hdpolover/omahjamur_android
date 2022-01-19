@@ -59,7 +59,7 @@
                 android:layout_gravity="center"
                 android:gravity="center"
                 android:textSize="20dp"
-                android:textColor="@color/colorBlack"
+                android:textColor="@color/black"
                 android:textStyle="bold"
                 android:layout_marginTop="20dp"
                 android:id="@+id/namaPenggunaTv"/>
@@ -72,7 +72,7 @@
                     android:layout_gravity="center"
                     android:gravity="center"
                     android:textSize="20dp"
-                    android:textColor="@color/colorBlack"
+                    android:textColor="@color/black"
                     android:id="@+id/peranTv"/>
 
             <Button
@@ -82,7 +82,7 @@
                 android:padding="15dp"
                 android:layout_marginTop="50dp"
                 android:layout_gravity="center"
-                android:id="@+id/editBtn"/>
+                android:id="@+id/editProfilBtn"/>
 
             <Button
                 android:layout_width="match_parent"
@@ -92,6 +92,16 @@
                 android:layout_marginTop="10dp"
                 android:layout_gravity="center"
                 android:id="@+id/tentangBtn"/>
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Bantuan"
+                android:padding="15dp"
+                android:layout_marginTop="10dp"
+                android:layout_gravity="center"
+                android:id="@+id/bantuanBtn"/>
+
 
             <Button
                 android:layout_width="match_parent"

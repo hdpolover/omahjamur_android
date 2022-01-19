@@ -19,15 +19,13 @@ public class PengaturanActivity extends AppCompatActivity {
         setContentView(view);
 
         setSupportActionBar(binding.toolbar);
-        setTitle("");
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setDisplayShowHomeEnabled(true);
 
-        binding.jenisProdukBtn.setOnClickListener(new View.OnClickListener() {
+        binding.adminBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(PengaturanActivity.this, PengaturanJenisProdukActivity.class));
+                startActivity(new Intent(PengaturanActivity.this, AdminTambahAdminActivity.class));
             }
         });
+
     }
 }

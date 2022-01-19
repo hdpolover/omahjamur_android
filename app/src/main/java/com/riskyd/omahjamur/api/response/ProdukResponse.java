@@ -9,47 +9,51 @@ public class ProdukResponse extends BaseResponse {
     public List<ProdukModel> data;
 
     public static class ProdukModel {
+        @SerializedName("id_pengguna")
+        public String idPengguna;
+
         @SerializedName("id_produk")
         public String idProduk;
 
-        @SerializedName("id_petani")
-        public String idPetani;
-
-        @SerializedName("id_detail_jenis_produk")
-        public String idDetailJenisProduk;
-
-        @SerializedName("judul")
-        public String judul;
+        @SerializedName("nama")
+        public String nama;
 
         @SerializedName("deskripsi")
         public String deskripsi;
 
-        @SerializedName("harga")
-        public String harga;
-
         @SerializedName("stok")
         public String stok;
+
+        @SerializedName("harga_satuan")
+        public String hargaSatuan;
 
         @SerializedName("gambar")
         public String gambar;
 
-        @SerializedName("deskripsi_djp")
-        public String deskripsiDjp;
+        @SerializedName("berat")
+        public String berat;
 
-        @SerializedName("deskripsi_jp")
-        public String deskripsiJp;
+        @SerializedName("kategori")
+        public String kategori;
 
-        public ProdukModel(String idProduk, String idPetani, String idDetailJenisProduk, String judul, String deskripsi, String harga, String stok, String gambar, String deskripsiDjp, String deskripsiJp) {
+        public ProdukModel(String idPengguna, String idProduk, String nama, String deskripsi, String stok, String hargaSatuan, String gambar, String berat, String kategori) {
+            this.idPengguna = idPengguna;
             this.idProduk = idProduk;
-            this.idPetani = idPetani;
-            this.idDetailJenisProduk = idDetailJenisProduk;
-            this.judul = judul;
+            this.nama = nama;
             this.deskripsi = deskripsi;
-            this.harga = harga;
             this.stok = stok;
+            this.hargaSatuan = hargaSatuan;
             this.gambar = gambar;
-            this.deskripsiDjp = deskripsiDjp;
-            this.deskripsiJp = deskripsiJp;
+            this.berat = berat;
+            this.kategori = kategori;
+        }
+
+        public String getIdPengguna() {
+            return idPengguna;
+        }
+
+        public void setIdPengguna(String idPengguna) {
+            this.idPengguna = idPengguna;
         }
 
         public String getIdProduk() {
@@ -60,28 +64,12 @@ public class ProdukResponse extends BaseResponse {
             this.idProduk = idProduk;
         }
 
-        public String getIdPetani() {
-            return idPetani;
+        public String getNama() {
+            return nama;
         }
 
-        public void setIdPetani(String idPetani) {
-            this.idPetani = idPetani;
-        }
-
-        public String getIdDetailJenisProduk() {
-            return idDetailJenisProduk;
-        }
-
-        public void setIdDetailJenisProduk(String idDetailJenisProduk) {
-            this.idDetailJenisProduk = idDetailJenisProduk;
-        }
-
-        public String getJudul() {
-            return judul;
-        }
-
-        public void setJudul(String judul) {
-            this.judul = judul;
+        public void setNama(String nama) {
+            this.nama = nama;
         }
 
         public String getDeskripsi() {
@@ -92,20 +80,20 @@ public class ProdukResponse extends BaseResponse {
             this.deskripsi = deskripsi;
         }
 
-        public String getHarga() {
-            return harga;
-        }
-
-        public void setHarga(String harga) {
-            this.harga = harga;
-        }
-
         public String getStok() {
             return stok;
         }
 
         public void setStok(String stok) {
             this.stok = stok;
+        }
+
+        public String getHargaSatuan() {
+            return hargaSatuan;
+        }
+
+        public void setHargaSatuan(String hargaSatuan) {
+            this.hargaSatuan = hargaSatuan;
         }
 
         public String getGambar() {
@@ -116,20 +104,20 @@ public class ProdukResponse extends BaseResponse {
             this.gambar = gambar;
         }
 
-        public String getDeskripsiDjp() {
-            return deskripsiDjp;
+        public String getBerat() {
+            return berat;
         }
 
-        public void setDeskripsiDjp(String deskripsiDjp) {
-            this.deskripsiDjp = deskripsiDjp;
+        public void setBerat(String berat) {
+            this.berat = berat;
         }
 
-        public String getDeskripsiJp() {
-            return deskripsiJp;
+        public String getKategori() {
+            return kategori;
         }
 
-        public void setDeskripsiJp(String deskripsiJp) {
-            this.deskripsiJp = deskripsiJp;
+        public void setKategori(String kategori) {
+            this.kategori = kategori;
         }
     }
 }

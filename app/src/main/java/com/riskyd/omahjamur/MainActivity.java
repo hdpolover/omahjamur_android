@@ -10,7 +10,9 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.google.firebase.auth.FirebaseAuth;
-import com.riskyd.omahjamur.activity.DaftarPetaniActivity;
+import com.riskyd.omahjamur.activity.AdminDaftarPetaniActivity;
+import com.riskyd.omahjamur.activity.CustomerDaftarPetaniActivity;
+import com.riskyd.omahjamur.activity.CustomerKeranjangActivity;
 import com.riskyd.omahjamur.activity.DaftarProdukPetaniActivity;
 import com.riskyd.omahjamur.activity.KatalogProdukCustomerActivity;
 import com.riskyd.omahjamur.activity.LaporanPetaniActivity;
@@ -19,16 +21,9 @@ import com.riskyd.omahjamur.activity.ProfilActivity;
 import com.riskyd.omahjamur.activity.TransaksiActivity;
 import com.riskyd.omahjamur.api.ApiClient;
 import com.riskyd.omahjamur.api.ApiInterface;
-import com.riskyd.omahjamur.api.response.AdminResponse;
-import com.riskyd.omahjamur.api.response.CustomerResponse;
 import com.riskyd.omahjamur.api.response.PenggunaResponse;
-import com.riskyd.omahjamur.api.response.PetaniResponse;
 import com.riskyd.omahjamur.databinding.ActivityMainBinding;
 import com.riskyd.omahjamur.preference.AppPreference;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -70,25 +65,34 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setView() {
-        String idRole = user.idRole;
+        String peran = user.peran;
 
-        if (idRole.equals("1")) {
+        if (peran.equals("admin")) {
             binding.peranPenggunaChip.setText("Admin");
 
             //CV a
             binding.aTv.setText("Petani");
+            binding.aIv.setImageResource(R.drawable.umkm);
             binding.aCv.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    startActivity(new Intent(MainActivity.this, DaftarPetaniActivity.class));
+                    startActivity(new Intent(MainActivity.this, AdminDaftarPetaniActivity.class));
                 }
             });
 
             //cv b
             binding.bTv.setText("Katalog Produk");
+            binding.bIv.setImageResource(R.drawable.jamur);
+            binding.bCv.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    startActivity(new Intent(MainActivity.this, KatalogProdukCustomerActivity.class));
+                }
+            });
 
             //cv c
             binding.cTv.setText("Transaksi");
+            binding.cIv.setImageResource(R.drawable.transaksi);
             binding.cCv.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -96,11 +100,20 @@ public class MainActivity extends AppCompatActivity {
                 }
             });
 
+
             //CV d
             binding.dTv.setText("Laporan");
+            binding.dIv.setImageResource(R.drawable.laporan);
+            binding.dCv.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    startActivity(new Intent(MainActivity.this, LaporanPetaniActivity.class));
+                }
+            });
 
             //cv e
             binding.eTv.setText("Pengaturan");
+            binding.eIv.setImageResource(R.drawable.pengaturan);
             binding.eCv.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -110,17 +123,19 @@ public class MainActivity extends AppCompatActivity {
 
             //cv f
             binding.fTv.setText("Profil");
+            binding.fIv.setImageResource(R.drawable.profil);
             binding.fCv.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     startActivity(new Intent(MainActivity.this, ProfilActivity.class));
                 }
             });
-        } else if(idRole.equals("2")) {
+        } else if(peran.equals("petani")) {
             binding.peranPenggunaChip.setText("Petani");
 
             //CV a
             binding.aTv.setText("Produk");
+            binding.aIv.setImageResource(R.drawable.jamur);
             binding.aCv.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -135,6 +150,7 @@ public class MainActivity extends AppCompatActivity {
 
             //cv b
             binding.bTv.setText("Transaksi");
+            binding.bIv.setImageResource(R.drawable.transaksi);
             binding.bCv.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -149,6 +165,7 @@ public class MainActivity extends AppCompatActivity {
 
             //cv c
             binding.cTv.setText("Laporan");
+            binding.cIv.setImageResource(R.drawable.laporan);
             binding.cCv.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -162,6 +179,7 @@ public class MainActivity extends AppCompatActivity {
 
             //CV d
             binding.dTv.setText("Profil");
+            binding.dIv.setImageResource(R.drawable.profil);
             binding.dCv.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -179,6 +197,7 @@ public class MainActivity extends AppCompatActivity {
 
             //CV a
             binding.aTv.setText("Produk");
+            binding.aIv.setImageResource(R.drawable.jamur);
             binding.aCv.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -188,24 +207,27 @@ public class MainActivity extends AppCompatActivity {
 
             //cv b
             binding.bTv.setText("Petani");
+            binding.bIv.setImageResource(R.drawable.umkm);
             binding.bCv.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                        startActivity(new Intent(MainActivity.this, TransaksiActivity.class));
+                        startActivity(new Intent(MainActivity.this, CustomerDaftarPetaniActivity.class));
                 }
             });
 
             //cv c
             binding.cTv.setText("Keranjang");
+            binding.cIv.setImageResource(R.drawable.keranjang);
             binding.cCv.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    startActivity(new Intent(MainActivity.this, LaporanPetaniActivity.class));
+                    startActivity(new Intent(MainActivity.this, CustomerKeranjangActivity.class));
                 }
             });
 
             //CV d
             binding.dTv.setText("Transaksi");
+            binding.dIv.setImageResource(R.drawable.transaksi);
             binding.dCv.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -215,6 +237,7 @@ public class MainActivity extends AppCompatActivity {
 
             //cv e
             binding.eTv.setText("Profil");
+            binding.eIv.setImageResource(R.drawable.profil);
             binding.eCv.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -229,77 +252,15 @@ public class MainActivity extends AppCompatActivity {
 
     private void getNama() {
 
-        String id = user.idPengguna;
+        binding.namaUserTv.setText(user.getUsername());
 
-        String idRole = user.idRole;
+        binding.peranPenggunaChip.setText(user.getPeran());
 
-        if (idRole.equals("1")) {
-            apiInterface.detail_admin(id).enqueue(new Callback<AdminResponse>() {
-                @Override
-                public void onResponse(Call<AdminResponse> call, Response<AdminResponse> response) {
-                    if (response.body().status) {
-                        binding.namaUserTv.setText(response.body().data.get(0).nama);
-
-                        Glide.with(getApplicationContext())
-                                .load(getString(R.string.base_url) + getString(R.string.profile_link) + response.body().data.get(0).foto)
-                                .centerCrop()
-                                .placeholder(R.drawable.gambar)
-                                .into(binding.fotoUserIv);
-                    }
-                }
-
-                @Override
-                public void onFailure(Call<AdminResponse> call, Throwable t) {
-                    Toast.makeText(MainActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
-                }
-            });
-        } else if (idRole.equals("2")) {
-            apiInterface.getDetailPetani(id).enqueue(new Callback<PetaniResponse>() {
-                @Override
-                public void onResponse(Call<PetaniResponse> call, Response<PetaniResponse> response) {
-                    if (response.body().status) {
-                        binding.namaUserTv.setText(response.body().data.get(0).nama);
-
-                        Glide.with(getApplicationContext())
-                                .load(getString(R.string.base_url) + getString(R.string.profile_link) + response.body().data.get(0).foto)
-                                .centerCrop()
-                                .placeholder(R.drawable.gambar)
-                                .into(binding.fotoUserIv);
-
-                        if (response.body().data.get(0).status.equals("0")) {
-                            belumValidasi = true;
-                            binding.warningCv.setVisibility(View.VISIBLE);
-                        }
-                    }
-                }
-
-                @Override
-                public void onFailure(Call<PetaniResponse> call, Throwable t) {
-                    Toast.makeText(MainActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
-                }
-            });
-        } else {
-            apiInterface.getDetailCustomer(id).enqueue(new Callback<CustomerResponse>() {
-                @Override
-                public void onResponse(Call<CustomerResponse> call, Response<CustomerResponse> response) {
-                    if (response.body().status) {
-                        binding.namaUserTv.setText(response.body().data.get(0).nama);
-
-                        Glide.with(getApplicationContext())
-                                .load(getString(R.string.base_url) + getString(R.string.profile_link) + response.body().data.get(0).foto)
-                                .centerCrop()
-                                .placeholder(R.drawable.gambar)
-                                .into(binding.fotoUserIv);
-                    }
-                }
-
-                @Override
-                public void onFailure(Call<CustomerResponse> call, Throwable t) {
-                    Toast.makeText(MainActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
-                }
-            });
-        }
-
+        Glide.with(getApplicationContext())
+                .load(getString(R.string.base_url) + getString(R.string.profile_link) + user.getFoto())
+                .centerCrop()
+                .placeholder(R.drawable.gambar)
+                .into(binding.fotoUserIv);
 
     }
 }
