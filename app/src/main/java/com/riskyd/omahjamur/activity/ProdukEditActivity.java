@@ -94,17 +94,13 @@ public class ProdukEditActivity extends AppCompatActivity {
                 selectedItem = i;
 
                 if (i == 0) {
-                    kategori = "cobek";
+                    kategori = "jamur";
                 } else if (i == 1) {
-                    kategori = "vas bunga";
+                    kategori = "olahan makanan";
                 } else if (i == 2) {
-                    kategori = "kendi";
+                    kategori = "bibit";
                 } else if (i == 3) {
-                    kategori = "asbak";
-                }else if (i == 4) {
-                    kategori = "lampion";
-                }else if (i == 5) {
-                    kategori = "celengan";
+                    kategori = "baglog";
                 }
             }
 

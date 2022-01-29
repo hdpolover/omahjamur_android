@@ -17,6 +17,7 @@ import android.widget.Toast;
 import com.github.dhaval2404.imagepicker.ImagePicker;
 import com.riskyd.omahjamur.api.ApiClient;
 import com.riskyd.omahjamur.api.ApiInterface;
+import com.riskyd.omahjamur.api.Helper;
 import com.riskyd.omahjamur.api.response.BaseResponse;
 import com.riskyd.omahjamur.databinding.ActivityTransaksiBayarBinding;
 
@@ -43,6 +44,7 @@ public class TransaksiBayarActivity extends AppCompatActivity {
     ProgressDialog progressDialog;
 
     String idTransaksi;
+    String total;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,6 +56,10 @@ public class TransaksiBayarActivity extends AppCompatActivity {
         apiInterface = ApiClient.getClient();
 
         idTransaksi = getIntent().getStringExtra("id_transaksi");
+
+        total = getIntent().getStringExtra("total");
+
+        binding.nilaiBayarTv.setText("Transfer senilai " + Helper.formatRupiah(Integer.parseInt(total)));
 
         binding.idTransaksiTv.setText(idTransaksi);
 

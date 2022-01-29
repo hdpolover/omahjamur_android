@@ -60,6 +60,36 @@
                 android:text="Silakan lakukan pembayaran ke nomor rekening berikut ini:"
                 android:textColor="@color/black"/>
 
+            <TextView
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Bank BCA"
+                android:textColor="@color/black"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text=" 3170005804"
+                android:textColor="@color/black"/>
+
+            <TextView
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Sri Miningsih"
+                android:textColor="@color/black"/>
+
+            <TextView
+                android:id="@+id/nilaiBayarTv"
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:textColor="@color/black"/>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
