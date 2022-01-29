@@ -13,10 +13,11 @@ import androidx.recyclerview.widget.RecyclerView;
 
 
 import com.riskyd.omahjamur.R;
-import com.riskyd.omahjamur.adapter.ProdukAdapter;
+import com.riskyd.omahjamur.adapter.ProdukJamurAdapter;
 import com.riskyd.omahjamur.api.ApiClient;
 import com.riskyd.omahjamur.api.ApiInterface;
 import com.riskyd.omahjamur.api.response.ProdukResponse;
+import com.riskyd.omahjamur.preference.AppPreference;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -83,28 +84,54 @@ public class JamurProdukFragment extends Fragment {
     }
 
     private void tampilProduk(String kategori) {
-        apiInterface.getKategoriProduk(kategori).enqueue(new Callback<ProdukResponse>() {
-            @Override
-            public void onResponse(Call<ProdukResponse> call, Response<ProdukResponse> response) {
-                if (response.body().status) {
-                    List<ProdukResponse.ProdukModel> list = new ArrayList<>();
+        if (AppPreference.getUser(getContext()).peran.equals("customer")) {
+            apiInterface.getKategoriProdukCustomer(kategori).enqueue(new Callback<ProdukResponse>() {
+                @Override
+                public void onResponse(Call<ProdukResponse> call, Response<ProdukResponse> response) {
+                    if (response.body().status) {
+                        List<ProdukResponse.ProdukModel> list = new ArrayList<>();
 
-                    list.addAll(response.body().data);
+                        list.addAll(response.body().data);
 
-                    rv.setAdapter(new ProdukAdapter(list, getContext()));
+                        rv.setAdapter(new ProdukJamurAdapter(list, getContext()));
 
-                    if (list.isEmpty()) {
-                        noData.setVisibility(View.VISIBLE);
-                    } else {
-                        noData.setVisibility(View.GONE);
+                        if (list.isEmpty()) {
+                            noData.setVisibility(View.VISIBLE);
+                        } else {
+                            noData.setVisibility(View.GONE);
+                        }
                     }
                 }
-            }
 
-            @Override
-            public void onFailure(Call<ProdukResponse> call, Throwable t) {
-                Toast.makeText(getContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
-            }
-        });
+                @Override
+                public void onFailure(Call<ProdukResponse> call, Throwable t) {
+                    Toast.makeText(getContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
+                }
+            });
+        } else {
+            apiInterface.getKategoriProduk(kategori).enqueue(new Callback<ProdukResponse>() {
+                @Override
+                public void onResponse(Call<ProdukResponse> call, Response<ProdukResponse> response) {
+                    if (response.body().status) {
+                        List<ProdukResponse.ProdukModel> list = new ArrayList<>();
+
+                        list.addAll(response.body().data);
+
+                        rv.setAdapter(new ProdukJamurAdapter(list, getContext()));
+
+                        if (list.isEmpty()) {
+                            noData.setVisibility(View.VISIBLE);
+                        } else {
+                            noData.setVisibility(View.GONE);
+                        }
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<ProdukResponse> call, Throwable t) {
+                    Toast.makeText(getContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
+                }
+            });
+        }
     }
 }

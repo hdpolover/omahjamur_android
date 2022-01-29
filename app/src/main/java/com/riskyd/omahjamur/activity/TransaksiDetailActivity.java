@@ -46,6 +46,8 @@ public class TransaksiDetailActivity extends AppCompatActivity {
         idTransaksi = getIntent().getStringExtra("id_transaksi");
         status = getIntent().getStringExtra("status");
 
+        PenggunaResponse.PenggunaModel p = AppPreference.getUser(this);
+
         apiInterface.getPembayaran(
                 idTransaksi
         ).enqueue(new Callback<PembayaranResponse>() {
@@ -77,15 +79,21 @@ public class TransaksiDetailActivity extends AppCompatActivity {
                     } else {
                         binding.sudahBayarLayout.setVisibility(View.GONE);
 
-                        binding.bayarBtn.setText("Bayar sekarang");
-                        binding.bayarBtn.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                Intent i = new Intent(TransaksiDetailActivity.this, TransaksiBayarActivity.class);
-                                i.putExtra("id_transaksi", idTransaksi);
-                                startActivity(i);
-                            }
-                        });
+                        if (p.peran.equals("customer")) {
+                            binding.bayarBtn.setText("Bayar sekarang");
+                            binding.bayarBtn.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    Intent i = new Intent(TransaksiDetailActivity.this, TransaksiBayarActivity.class);
+                                    i.putExtra("id_transaksi", idTransaksi);
+                                    startActivity(i);
+                                }
+                            });
+                        } else {
+                            binding.bayarBtn.setVisibility(View.GONE);
+                            binding.belumBayarTv.setText("Customer belum melakukan pembayaran transaksi ini.");
+                        }
+
                     }
                 }
             }
@@ -165,14 +173,10 @@ public class TransaksiDetailActivity extends AppCompatActivity {
             }
         });
 
-        PenggunaResponse.PenggunaModel p = AppPreference.getUser(this);
-
         if (p.peran.equals("admin")) {
             binding.btn.setVisibility(View.GONE);
-        } else if (p.peran.equals("pengrajin")) {
-            if (Integer.parseInt(status) >= 2) {
-                binding.btn.setVisibility(View.GONE);
-            } else {
+        } else if (p.peran.equals("petani")) {
+            if (Integer.parseInt(status) == 1) {
                 binding.btn.setText("UPDATE RESI");
                 binding.btn.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -182,6 +186,8 @@ public class TransaksiDetailActivity extends AppCompatActivity {
                         startActivity(i);
                     }
                 });
+            } else {
+                binding.btn.setVisibility(View.GONE);
             }
         } else {
             if (Integer.parseInt(status) == 2) {

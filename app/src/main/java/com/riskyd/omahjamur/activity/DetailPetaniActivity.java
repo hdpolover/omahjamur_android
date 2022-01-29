@@ -11,14 +11,13 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.riskyd.omahjamur.R;
-import com.riskyd.omahjamur.adapter.ProdukAdapter;
+import com.riskyd.omahjamur.adapter.ProdukJamurAdapter;
 import com.riskyd.omahjamur.api.ApiClient;
 import com.riskyd.omahjamur.api.ApiInterface;
 import com.riskyd.omahjamur.api.response.BaseResponse;
 import com.riskyd.omahjamur.api.response.PenggunaResponse;
 import com.riskyd.omahjamur.api.response.ProdukResponse;
 import com.riskyd.omahjamur.databinding.ActivityDetailPetaniBinding;
-import com.riskyd.omahjamur.databinding.ActivityTambahProdukBinding;
 import com.riskyd.omahjamur.preference.AppPreference;
 
 import java.util.ArrayList;
@@ -124,7 +123,7 @@ public class DetailPetaniActivity extends AppCompatActivity {
 
                     list.addAll(response.body().data);
 
-                    binding.rv.setAdapter(new ProdukAdapter(list, getApplicationContext()));
+                    binding.rv.setAdapter(new ProdukJamurAdapter(list, getApplicationContext()));
 
                     if (list.isEmpty()) {
                         binding.noProdukLayout.setVisibility(View.VISIBLE);

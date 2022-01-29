@@ -65,8 +65,9 @@ public class EditProfilCustomerActivity extends AppCompatActivity {
             binding.longi.setVisibility(View.GONE);
             binding.spinnerLayout.setVisibility(View.GONE);
             binding.telp.setVisibility(View.GONE);
-        } else if (p.peran.equals("pengrajin")) {
+        } else if (p.peran.equals("petani")) {
             binding.spinnerLayout.setVisibility(View.GONE);
+
         } else {
             binding.lat.setVisibility(View.GONE);
             binding.longi.setVisibility(View.GONE);

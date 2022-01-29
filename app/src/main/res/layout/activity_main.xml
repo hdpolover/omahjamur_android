@@ -303,6 +303,7 @@
                                     android:id="@+id/eIv"
                                     android:layout_width="100dp"
                                     android:layout_height="100dp"
+                                    android:layout_gravity="center"
                                     android:src="@drawable/gambar"/>
 
                                 <TextView
@@ -341,6 +342,7 @@
                                     android:id="@+id/fIv"
                                     android:layout_width="100dp"
                                     android:layout_height="100dp"
+                                    android:layout_gravity="center"
                                     android:src="@drawable/gambar"/>
 
                                 <TextView

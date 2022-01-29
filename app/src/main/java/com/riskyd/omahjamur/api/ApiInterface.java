@@ -110,6 +110,11 @@ public interface ApiInterface {
             @Query("kategori") String kategori
     );
 
+    @GET("produk/get_kategori_customer")
+    Call<ProdukResponse> getKategoriProdukCustomer(
+            @Query("kategori") String kategori
+    );
+
     @Multipart
     @POST("produk/tambah")
     Call<BaseResponse> tambahProduk(
@@ -159,6 +164,16 @@ public interface ApiInterface {
 
     @GET("transaksi/get_tr_selesai")
     Call<TransaksiResponse> getTrSelesai(
+            @Query("id_pengguna") String idPengguna
+    );
+
+    @GET("transaksi/get_tr_berlangsung_petani")
+    Call<TransaksiResponse> getTrBerlangsungPetani(
+            @Query("id_pengguna") String idPengguna
+    );
+
+    @GET("transaksi/get_tr_selesai_petani")
+    Call<TransaksiResponse> getTrSelesaiPetani(
             @Query("id_pengguna") String idPengguna
     );
 

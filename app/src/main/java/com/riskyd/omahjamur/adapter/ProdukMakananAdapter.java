@@ -15,20 +15,18 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.google.android.material.card.MaterialCardView;
 import com.riskyd.omahjamur.R;
-import com.riskyd.omahjamur.activity.DetailPetaniActivity;
 import com.riskyd.omahjamur.activity.DetailProdukActivity;
-import com.riskyd.omahjamur.api.ApiInterface;
 import com.riskyd.omahjamur.api.Helper;
 import com.riskyd.omahjamur.api.response.ProdukResponse;
 
 import java.util.List;
 
-public class ProdukAdapter extends RecyclerView.Adapter<ProdukAdapter.ViewHolder> {
+public class ProdukMakananAdapter extends RecyclerView.Adapter<ProdukMakananAdapter.ViewHolder> {
     private static List<ProdukResponse.ProdukModel> list;
     Context context;
 
-    public ProdukAdapter(List<ProdukResponse.ProdukModel> list, Context context) {
-        ProdukAdapter.list = list;
+    public ProdukMakananAdapter(List<ProdukResponse.ProdukModel> list, Context context) {
+        ProdukMakananAdapter.list = list;
         this.context = context;
     }
 

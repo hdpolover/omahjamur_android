@@ -5,26 +5,18 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
-import android.widget.Toast;
 
-import com.riskyd.omahjamur.adapter.ProdukAdapter;
 import com.riskyd.omahjamur.adapter.ProdukVerticalAdapter;
 import com.riskyd.omahjamur.api.ApiClient;
 import com.riskyd.omahjamur.api.ApiInterface;
-import com.riskyd.omahjamur.api.response.BaseResponse;
-import com.riskyd.omahjamur.api.response.PenggunaResponse;
 import com.riskyd.omahjamur.api.response.ProdukResponse;
-import com.riskyd.omahjamur.databinding.ActivityDaftarPetaniBinding;
 import com.riskyd.omahjamur.databinding.ActivityDaftarProdukPetaniBinding;
 import com.riskyd.omahjamur.preference.AppPreference;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import okhttp3.MediaType;
-import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;

@@ -120,16 +120,23 @@ public class CekOutActivity extends AppCompatActivity {
         binding.materialButtonTambahJumlahOrder.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                int lama = jumlahOrder;
                 jumlahOrder++;
-                binding.editTextJumlahOrder.setText(String.valueOf(jumlahOrder));
-                int harga = hargaSatuan * jumlahOrder;
-                subtotal = harga;
-                binding.hargaSubtotalTv.setText(Helper.formatRupiah(harga));
-                binding.subTotalTv.setText(nama + " x " + jumlahOrder);
 
-                binding.totalHargaTv.setText(Helper.formatRupiah(harga + Integer.parseInt(ongkir)));
+                if (jumlahOrder > stokLama) {
+                    jumlahOrder = lama;
+                    Toast.makeText(getApplicationContext(), "Jumlah order melebihi stok. Tidak bisa.", Toast.LENGTH_SHORT).show();
+                } else {
+                    binding.editTextJumlahOrder.setText(String.valueOf(jumlahOrder));
+                    int harga = hargaSatuan * jumlahOrder;
+                    subtotal = harga;
+                    binding.hargaSubtotalTv.setText(Helper.formatRupiah(harga));
+                    binding.subTotalTv.setText(nama + " x " + jumlahOrder);
 
-                totalHarga = harga + Integer.parseInt(ongkir);
+                    binding.totalHargaTv.setText(Helper.formatRupiah(harga + Integer.parseInt(ongkir)));
+
+                    totalHarga = harga + Integer.parseInt(ongkir);
+                }
             }
         });
 
