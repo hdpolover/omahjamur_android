@@ -57,10 +57,6 @@ public class TransaksiBayarActivity extends AppCompatActivity {
 
         idTransaksi = getIntent().getStringExtra("id_transaksi");
 
-        total = getIntent().getStringExtra("total");
-
-        binding.nilaiBayarTv.setText("Transfer senilai " + Helper.formatRupiah(Integer.parseInt(total)));
-
         binding.idTransaksiTv.setText(idTransaksi);
 
         binding.pilihFotoBtn.setOnClickListener(new View.OnClickListener() {
